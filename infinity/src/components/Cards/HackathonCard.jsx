@@ -1,14 +1,12 @@
 import React from 'react'
-
+import hacakathonImage from '../../assets/images/hackathon.png'
 const HackathonCard = () => {
-  const hackathons=[{},{},{}];
   return(
    <div>
-    {
-      hackathons.map((hackathon)=>(
-        <div className='my-5 w-full md:mr-5  w-full'>
+    
+        <div className='my-1 w-full md:mr-5  w-full'>
         <div className='p-5 flex rounded-md border bg-white'>
-          <div className='lg:w-1/3 w-1/3 md:w-2/5 rounded-lg bg-black'><img></img></div>
+          <div className='lg:w-1/3 w-1/3 md:w-2/5 rounded-lg bg-black overflow-hidden'><img src={hacakathonImage}/></div>
           <div className='flex flex-col ml-5'>
           <div className=''>
             <p className='lg:text-md md:text-md'>Google Ai Hackathons</p>
@@ -24,8 +22,7 @@ const HackathonCard = () => {
           </div>
         </div>
       </div>
-      ))
-    }
+     
    </div>
   );
 }

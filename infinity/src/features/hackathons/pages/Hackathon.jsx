@@ -6,24 +6,44 @@ import EventsDescription from '../components/EventsDescription';
 import EventsDescriptionList from '../components/EventsDescriptionList';
 import EventWidget from '../components/EventWidget';
 import Footer from '../../../components/navBars/Footer';
-
+import HackathonBanner from '../../../assets/images/hackathonBanner.jpg'
+import { useState } from 'react';
+import hackathonImage from '../../../assets/images/hackathon.png'
 // we need to define the Custom Seeing options of the hackathons and also we need to define the Custom Questions Section
 const Hackathon = () => {
+  const [activeQusetionId, setActiveQuestionId]= useState(null);
+  const handleAnswertToggle= (questionId)=>{
+      if(questionId==activeQusetionId){
+        // alert("clicked");
+        //going to close that one Question
+        setActiveQuestionId(nulll);
+      }
+      else{
+        setActiveQuestionId(questionId);
+      }
+  }
+  const hackathons=[{},{},{},{},{},{},{},{}];
   return (
     <div>
         <div>
             <NavBar />
+            <div className='w-full h-1/4'>
+              <img src={HackathonBanner} className='object-cover w-full'/>
+            </div>
             {/* we are going to define the split Screeen Hackathons */}
             <div className='bg-blue-50'>
             <div className='mx-2 flex flex-row'>
-              <div className='w-2/5 hidden md:flex flex-col h-screen overflow-y-scroll'>
-                <HackathonCard/>
-                <HackathonCard/>
+              <div className='w-2/5  mt-2 hidden md:flex flex-col'>
+              {
+                 hackathons.map((hackathon)=>(
+                      <HackathonCard/>
+                ))
+              }
               </div>
-              <div className='w-3/5 ml-3 mt-1.5 h-screen overflow-y-scroll thin-scrollbar scrollbar-thumb-bg-gray-300 scrollbar-track-bg-gray-100'>
-                 <div className='w-full mt-3 bg-white h-auto flex-col border rounded-md'>
+              <div className='md:w-3/5 w-full mt-2 md:ml-3 ml-0 thin-scrollbar scrollbar-thumb-bg-gray-300 scrollbar-track-bg-gray-100'>
+                 <div className='w-full mt-1 bg-white h-auto flex-col border rounded-md'>
                     <div className='w-full px-5 py-5 flex'>
-                      <div className='w-1/5 bg-black rounded-md overflow-hidden'><img></img></div>
+                      <div className='w-1/5 bg-black rounded-md overflow-hidden'><img src={hackathonImage}/></div>
                       <div className='w-4/5 flex flex-col ml-3'>
                             <p className='text-xl font-bold '>MIH 2.O Mind Installers Hackathon</p>
                             <p className='text-sm mt-2'>IIMT College Of Engineering (IIMT COE), Greater Noida</p>
@@ -117,6 +137,29 @@ const Hackathon = () => {
              
             </div>
 
+            </div>
+
+            {/* we are going to define the Quick Asked qustions for the hackathon */}
+            <div className='w-full rounded-md'>
+              <div className='mx-5 bg-white my-10'>
+                <div><p className='text-3xl text-dark-blue font-semibold'>Frequently Asked Questions</p></div>
+                <ul className='py-3 ml-5'>
+                  <li key="q1" onClick={()=>handleAnswertToggle("q1")} className='text-dark-blue my-2 text-lg'>What is a hackathon?
+                      <div className={activeQusetionId=== "q1" ? "" : "hidden"}><p className='text-sm text-black font-normal ml-5'>A hackathon is a coding marathon where teams create software or hardware solutions </p></div>
+                  </li>
+                  <li key="q2" onClick={()=>handleAnswertToggle("q2")} className='text-dark-blue my-2 text-lg'>Do I need coding skills for the hackathon?
+                      <div className={activeQusetionId=== "q2" ? "" : "hidden"}><p className='text-sm text-black font-normal ml-5'>No, you don't necessarily need coding skills for a hackathon! While coding is a valuable asset in many hackathons, many roles contribute to a successful team</p></div>
+                  </li>
+                  <li key="q3" onClick={()=>handleAnswertToggle("q3")} className='text-dark-blue my-2 text-lg'>Can I go to a hackathon with no experience?
+                      <div className={activeQusetionId=== "q3" ? "" : "hidden"}><p className='text-sm text-black font-normal ml-5'>Absolutely! Hackathons are a fantastic opportunity for people of all experience levels, even those with no prior experience.</p></div>
+                  </li>
+                  <li key="q4" onClick={()=>handleAnswertToggle("q4")} className='text-dark-blue my-2 text-lg'>Do companies hire from hackathons?
+                      <div className={activeQusetionId=== "q4" ? "" : "hidden"}><p className='text-sm text-black font-normal ml-5'>Yes, companies absolutely hire from hackathons! Hackathons have become a popular recruitment tool</p></div>
+                  </li>
+                  <li><a href="#" className='text-md font-bold text-dark-blue'>Other Questions</a></li>
+                </ul>
+                
+              </div>
             </div>
             <Footer />
         </div>      

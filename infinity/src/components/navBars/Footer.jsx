@@ -3,9 +3,9 @@ import React from 'react'
 const Footer = () => {
   return (
     <div className='bg-gray-100 w-full'>
-      <div className='mx-10 pt-10 pb-5'>
+      <div className='lg:mx-20 md:mx-15 mx-5 pt-10 pb-5'>
           <div className='flex flex-row justify-between'>
-              <div>
+              <div className='hidden md:flex flex-col'>
                 <div className='font-bold text-gray-700 text-sm'>Devpost</div>
                 <ul className='py-2 text-sm'>
                   <li className='py-1 text-gray-700 hover:underline'><a>About</a></li>
@@ -56,7 +56,7 @@ const Footer = () => {
       <div>
         <div className=''><hr/></div>
         <div className='mt-3'>
-          <ul className='flex flex-row justify-between mx-8 text-sm'>
+          <ul className='flex flex-row flex-wrap justify-between mx-8 text-sm'>
             <li className='py-1 text-gray-700 hover:underline'><a>© 2024 Devpost, Inc. All rights reserved.</a></li>
             <li className='py-1 text-gray-700 hover:underline'><a>Community guidelines</a></li>
             <li className='py-1 text-gray-700 hover:underline'><a>Security</a></li>

@@ -9,7 +9,9 @@ import SignUpUser from './features/auth/pages/UserAuthPages/SignUpUser'
 import PasswordResetPage from './features/auth/pages/Password.jsx'
 import HomePage from './features/homeScreen/pages/HomePage';
 import Preferences from './features/auth/pages/UserAuthPages/Prefference'
-import Hackathon from './features/hackathons/pages/Hackathon';
+import Hackathon from './features/hackathons/pages/Hackathon'
+import BlogPage from './features/blogs/pages/BlogPage';
+
 const firebaseConfig = {
   apiKey: "AIzaSyCvdwjk8ycZiGgOZHA7A0fztozG3R57nHA",
   authDomain: "infinity-vinay.firebaseapp.com",
@@ -37,6 +39,7 @@ const App = () => {
         <Route path='/homeScreen' element= {<HomePage/>}/>
         <Route path='/prefference' element={<Preferences />} />
         <Route path='/hackathon' element= {<Hackathon />}/>
+        <Route path='/blog' element={<BlogPage />}/>
       </Routes>
     </div>
   </Router>
