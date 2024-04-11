@@ -11,6 +11,8 @@ import HomePage from './features/homeScreen/pages/HomePage';
 import Preferences from './features/auth/pages/UserAuthPages/Prefference'
 import Hackathon from './features/hackathons/pages/Hackathon'
 import BlogPage from './features/blogs/pages/BlogPage';
+import DetailedHackathon from './features/hackathons/pages/DetailedHackathon';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCvdwjk8ycZiGgOZHA7A0fztozG3R57nHA",
@@ -39,6 +41,7 @@ const App = () => {
         <Route path='/homeScreen' element= {<HomePage/>}/>
         <Route path='/prefference' element={<Preferences />} />
         <Route path='/hackathon' element= {<Hackathon />}/>
+        <Route path='/detailHackathon' element= {<DetailedHackathon />}/>
         <Route path='/blog' element={<BlogPage />}/>
       </Routes>
     </div>
