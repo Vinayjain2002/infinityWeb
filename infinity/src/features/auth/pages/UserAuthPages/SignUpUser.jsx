@@ -138,29 +138,30 @@ const SignUpUser = () => {
   return (
     <div className='flex h-screen flex-col md:flex-row'>
           <ToastContainer />
-    <div className="lg:w-1/2 md:w-4/6 h-full flex flex-col justify-center items-center">
-        <div className='w-3/5'>
+    <div className="md:w-1/2 w-full bg-gray-50 h-full flex flex-col justify-center items-center">
+        <div className='xl:w-1/2 lg:w-3/5 md:w-4/5 sm:w-3/5 w-4/5'>
           {/* here the this full div is not coming in the center  */}
-          <form className="flex flex-col" onSubmit={submitForm}>
           <div className='mb-7'>
-                <p className="text-left text-blue-500 text-5xl font-bold">Infinity</p>
-                <p className="text-left text-gray-500 text-3xl font-bold">Education never ends</p>
+                <p className="text-left text-blue-500  text-4xl font-bold">SignUp</p>
+                <p className="text-left text-gray-500 mt-2  lg:text-3xl text-2xl font-bold">Register at Infinity</p>
             </div>
-            <label htmlFor="username" className="text-gray-500 text-sm mt-4">Username:</label>
-                <input type="text" id="username" className="border px-2 py-1 border-gray-300 w-2/3  focus:outline-none focus:border-blue-500" onChange={onChangeHandler} name="username" required/>
-                <label htmlFor="email" className="text-gray-500 text-sm mt-4">Email:</label>
-                <input type="text" id="email" className="border px-2 py-1 border-gray-300 w-2/3  focus:outline-none focus:border-blue-500" onChange={onChangeHandler} name="email" required/>
+          <form className="flex flex-col" onSubmit={submitForm}>
+          
+            <label htmlFor="username" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Username:</label>
+                <input type="text" id="username" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="username" required/>
+                <label htmlFor="email" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Email:</label>
+                <input type="text" id="email" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="email" required/>
                 {/* <p>Invalid Email</p> */}
-                <label htmlFor="mobileno" className="text-gray-500 text-sm mt-4">Mobile No:</label>
-                <input type="tel" id="mobileno" className="border px-2 py-1 border-gray-300 w-2/3  focus:outline-none focus:border-blue-500" onChange={onChangeHandler} name="mobileno" required/>
+                <label htmlFor="mobileno" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Mobile No:</label>
+                <input type="tel" id="mobileno" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="mobileno" required/>
                 {/* {/* <p className="text-sm text-red-400 mt-1">Invalid mobileNo</p>       */}
-                          <button type="submit" className="bg-blue-500 text-white w-2/3 text-sm font-semibold px-4 py-2 mt-4 hover:bg-blue-600 focus:outline-none"> 
-                    <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading}>
+                          <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none"> 
+                    <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading} className='text-md xl:text-4xl'>
                           Login
                     </Button>                
                  </button> 
                   <div className='flex'>
-                      <p className="text-gray-500 text-sm mt-4">Already have an account? <a href="/login" className="text-blue-500">Login</a></p>
+                      <p className="text-gray-500 text-md  mt-4">Already have an account? <a href="/login" className="text-blue-500">Login</a></p>
                   </div>       
               </form>
           </div>

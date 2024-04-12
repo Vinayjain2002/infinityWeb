@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
-import loginillum from '../../../../assets/images/loginflex.png';
+import loginimage from '../../../../assets/images/theme.png'
+import { ToastContainer, toast } from 'react-toastify';
 
 const RegisterAsAdmin = () => {
     const [email, setemail]= useState("");
@@ -95,29 +96,32 @@ const RegisterAsAdmin = () => {
 
 
   return (
-    <div className='flex h-screen'>
-    <div className="w-1/2 h-full flex flex-col items-center">
-      <div className='w-4/5 mt-16'> 
+    <div className='flex h-screen flex-col md:flex-row'>
+          <ToastContainer />
+    <div className="md:w-1/2 bg-gray-50 w-full h-full flex flex-col justify-center items-center">
+      <div className='xl:w-1/2 lg:w-3/5 md:w-4/5 sm:w-3/5 w-4/5'> 
       {/* here the this full div is not coming in the center  */}
-        <p className="text-left text-blue-500 text-5xl font-bold">Register as Admin</p>
+      <div className='mb-7'>
+          <p className="text-left text-blue-500 text-5xl font-bold">Register as Admin</p>
+      </div>
         <form className="flex  flex-col" onSubmit={submitForm}>
-          <label htmlFor="name" className="text-gray-500 text-sm mt-4">Name:</label>
-          <input type="text" id="name" className="border px-2 py-1 border-gray-300 w-1/2 focus:outline-none focus:border-blue-500 text-gray-600 text-sm" onChange={onChangeHandler} name="name" required />
-          <label htmlFor="email" className="text-gray-500 text-sm mt-4">Email:</label>
-          <input type="text" id="email" className="border px-2 py-1 border-gray-300 w-1/2 focus:outline-none focus:border-blue-500 text-gray-600 text-sm" onChange={onChangeHandler} name="email" required/>
-          <label htmlFor="mobileno" className="text-gray-500 text-sm mt-4">Mobile No:</label>
-          <input type="tel" id="mobileno" className="border px-2 py-1 border-gray-300 w-1/2 focus:outline-none focus:border-blue-500 text-gray-600 text-sm" onChange={onChangeHandler} name="mobileno" required/>
+          <label htmlFor="name" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Name:</label>
+          <input type="text" id="name" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="name" required />
+          <label htmlFor="email" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Email:</label>
+          <input type="text" id="email" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="email" required/>
+          <label htmlFor="mobileno" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Mobile No:</label>
+          <input type="tel" id="mobileno" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="mobileno" required/>
 
           {/* going to define the code for selecting the fields  */}
-          <label htmlFor="accessOption" className='text-gray-500 text-sm mt-4'>What you want to manage:</label>
-          <Select id="accessOption" className='w-1/2 mt-1' options={options} isMulti value={selectedOption} onChange={setselectedOption}/>
-          <button type="submit" className="bg-blue-500 text-white w-1/2 text-sm font-semibold px-4 py-2 mt-4 hover:bg-blue-600 focus:outline-none">Register</button>
-          <p className="text-gray-500 text-sm mt-4">Already Registered <a href="/adminsignup" className="text-blue-500">Login</a></p>
+          <label htmlFor="accessOption" className='text-gray-500 ld:text-md 2xl:text-lg text-md mt-4'>What you want to manage:</label>
+          <Select id="accessOption" className='w-full mt-1' options={options} isMulti value={selectedOption} onChange={setselectedOption}/>
+          <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">Register</button>
+          <p className="text-gray-500 text-md  mt-4">Already Registered <a href="/adminsignup" className="text-blue-500">Login</a></p>
         </form>
       </div>
     </div>
-    <div className="w-1/2 bg-blue-900 flex items-center justify-center">
-      <img src={loginillum} alt="login User illuminations" className="w-full h-full" />
+    <div className="w-1/2  md:flex hidden items-center justify-center">
+        <img src={loginimage} alt="login User illuminations" className="max-w-full max-h-full w-full h-full object-cover" />
     </div>
   </div>
   );

@@ -125,38 +125,38 @@ const LoginUser = () => {
   return (
 <div className='flex h-screen flex-col md:flex-row'>
     <ToastContainer />
-    <div className="lg:w-1/2 md:w-4/6 h-full flex flex-col justify-center items-center">
-        <div className='w-3/5'>
+    <div className="md:w-1/2 bg-gray-50 w-full h-full flex flex-col justify-center items-center">
+        <div className='xl:w-1/2 lg:w-3/5 md:w-4/5 sm:w-3/5 w-4/5'>
             <div className='mb-7'>
-                <p className="text-left text-blue-500 text-5xl font-bold">Infinity</p>
-                <p className="text-left text-gray-500 text-3xl font-bold">Education never ends</p>
+                <p className="text-left text-blue-500 text-4xl font-bold">Login</p>
+                <p className="text-left text-gray-500   text-2xl font-bold">Welcome Back to Infinity</p>
             </div>
             <form className="flex flex-col" onSubmit={submitForm}>
-                <label htmlFor="username" className="text-gray-500 text-sm mt-4">Username</label>
-                <input type="text" id="username" className="border px-2 py-1 border-gray-300 w-2/3  focus:outline-none focus:border-blue-500" onChange={onChangeHandler} name="username" required/>
-                <label htmlFor="password" className="text-gray-500 text-sm mt-4">Password</label>
-                <input type="password" id="password" className="border px-2 py-1 border-gray-300 w-2/3 focus:outline-none focus:border-blue-500" onChange={onChangeHandler} name="password" required/>
+                <label htmlFor="username" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Username</label>
+                <input type="text" id="username" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="username" required/>
+                <label htmlFor="password" className="text-gray-500 ld:text-md 2xl:text-lg text-md mt-4">Password</label>
+                <input type="password" id="password" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="password" required/>
                 <div className='w-full'>
                     <a href="#" className=" text-blue-500 text-sm mt-1 ">Forgot password?</a>
                 </div>
-                <button type="submit" className="bg-blue-500 text-white w-2/3 text-sm font-semibold px-4 py-2 mt-4 hover:bg-blue-600 focus:outline-none">
-                    <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading}>
+                <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">
+                    <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading} className='text-md xl:text-4xl'>
                           Login
                     </Button>                
                  </button>
             </form>
             <div>
-              <button id="loginWithGoogle" onClick={loginWithGoogleFunc} className="bg-transparent hover:bg-blue-500 text-blue-500 md:w-4/9 w-2/3 py-2 px-4 mt-2 border border-blue-500 hover:border-transparent rounded shadow opacity-75 hover:text-white">
+              <button id="loginWithGoogle" onClick={loginWithGoogleFunc} className="bg-transparent hover:bg-blue-500 text-blue-500 md:w-4/9 w-full  py-2 px-4 mt-2 border border-blue-500 hover:border-transparent rounded shadow opacity-75 hover:text-white">
                     Login With Google
                 </button>
                 <div className='flex'>
-                <p className="text-gray-500 text-sm mt-4">Don't have an account? <a href="/signup" className="text-blue-500">Sign up</a></p>
+                <p className="text-gray-500 text-md  mt-4">Don't have an account? <a href="/signup" className="text-blue-500">Sign up</a></p>
 
                 </div>
             </div>
         </div>
     </div>
-    <div className="lg:w-1/2 md:w-3/6  md:flex hidden items-center justify-center">
+    <div className="w-1/2  md:flex hidden items-center justify-center">
         <img src={loginimage} alt="login User illuminations" className="max-w-full max-h-full w-full h-full object-cover" />
     </div>
 </div>

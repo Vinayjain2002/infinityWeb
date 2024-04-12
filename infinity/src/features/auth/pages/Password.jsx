@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import loginimage from '../../../assets/images/theme.png'
+import { ToastContainer, toast } from 'react-toastify';
 
 const PasswordResetPage = () => {
   const { token, username } = useParams();
@@ -77,18 +78,19 @@ const PasswordResetPage = () => {
   
   return(
     <div className='flex h-screen flex-col md:flex-row'>
-    <div className="lg:w-1/2 md:w-4/6 h-full flex flex-col justify-center items-center">
-        <div className='w-3/5'>
+          <ToastContainer />
+    <div className="md:w-1/2 bg-gray-50 w-full h-full flex flex-col justify-center items-center">
+        <div className='xl:w-1/2 lg:w-3/5 md:w-4/5 sm:w-3/5 w-4/5'>
             <div className='mb-7'>
                 <p className="text-left text-blue-500 text-5xl font-bold">Infinity</p>
-                <p className="text-left text-gray-500 text-3xl font-bold">Education never ends</p>
+                <p className="text-left text-gray-500   text-3xl font-bold">Education never ends</p>
             </div>
             <form className="flex flex-col" onSubmit={submitForm}>
-                <label htmlFor="password" className="text-gray-500 text-sm mt-4">Password</label>
-                <input type="password" id="password" className="border px-2 py-1 border-gray-300 w-2/3  focus:outline-none focus:border-blue-500" onChange={onChangeHandler} name="password" required/>
-                <label htmlFor="confirmPassword" className="text-gray-500 text-sm mt-4">Retype Password</label>
-                <input type="password" id="confirmPassword" className="border px-2 py-1 border-gray-300 w-2/3 focus:outline-none focus:border-blue-500" onChange={onChangeHandler} name="confirmPassword" required/>
-                <button type="submit" className="bg-blue-500 text-white w-2/3 text-sm font-semibold px-4 py-2 mt-4 hover:bg-blue-600 focus:outline-none">Set Password</button>
+                <label htmlFor="password" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Password</label>
+                <input type="password" id="password" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="password" required/>
+                <label htmlFor="confirmPassword" className="text-gray-500 ld:text-md 2xl:text-lg text-md mt-4">Retype Password</label>
+                <input type="password" id="confirmPassword" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="confirmPassword" required/>
+                <button type="submit" className="bg-blue-500  rounded-md text-white w-full text-md font-semibold lg:py-3 py-3 mt-7 hover:bg-blue-600 focus:outline-none">Set Password</button>
             </form>
       </div>
     </div>
