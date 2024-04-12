@@ -102,7 +102,7 @@ const RegisterAsAdmin = () => {
       <div className='xl:w-1/2 lg:w-3/5 md:w-4/5 sm:w-3/5 w-4/5'> 
       {/* here the this full div is not coming in the center  */}
       <div className='mb-7'>
-          <p className="text-left text-blue-500 text-5xl font-bold">Register as Admin</p>
+          <p className="text-left text-blue-500 text-4xl font-bold">Register as Admin</p>
       </div>
         <form className="flex  flex-col" onSubmit={submitForm}>
           <label htmlFor="name" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Name:</label>
@@ -115,7 +115,7 @@ const RegisterAsAdmin = () => {
           {/* going to define the code for selecting the fields  */}
           <label htmlFor="accessOption" className='text-gray-500 ld:text-md 2xl:text-lg text-md mt-4'>What you want to manage:</label>
           <Select id="accessOption" className='w-full mt-1' options={options} isMulti value={selectedOption} onChange={setselectedOption}/>
-          <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">Register</button>
+          <button type="submit" className="bg-blue-500 text-white w-full font-semibold rounded-md px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">Register</button>
           <p className="text-gray-500 text-md  mt-4">Already Registered <a href="/adminsignup" className="text-blue-500">Login</a></p>
         </form>
       </div>
