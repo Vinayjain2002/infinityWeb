@@ -6,12 +6,12 @@ const RoundDetails = () => {
       <div className='border bg-white rounded-md px-3 py-2 mt-1'>
             <div>
                 <div className='flex justify-between'>
-                        <div className='text-md text-gray-800 font-semibold'>Idea Submission and Presentation Round</div>
-                        <div className='px-1 text-sm border bg-blue-100'>On Stop</div>
+                        <div className='text-md lg:text-lg 2xl:text-xl text-gray-800 font-semibold'>Idea Submission and Presentation Round</div>
+                        {/* <div className='px-1 text-sm border bg-blue-100'>On Stop</div> */}
                 </div>
 
                 <div className='mt-2'>
-                      <p className='text-sm text-gray-500'>Prepare a presentation based on the provided format/template DownloadTemplate
+                      <p className='text-xs lg:text-md text-gray-500'>Prepare a presentation based on the provided format/template DownloadTemplate
                           Submit and present your PowerPoint presentation online.
                             This presentation should effectively communicate your project idea, solution, and how it addresses the selected problem statement.
                       </p>
