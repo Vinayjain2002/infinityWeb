@@ -6,8 +6,8 @@ import likei from '../../../assets/svgs/like.svg';
 const ProjectCard = () => {
   return (
     <div>
-<div className="h-screen flex justify-center">
-<div className="grid grid-rows-2 grid-flow-col gap-4 mx-3 my-3">
+        <div className="h-screen flex justify-center">
+        <div className="grid grid-rows-2 grid-flow-col gap-4 mx-3 my-3">
 {/* first card */}
 
 

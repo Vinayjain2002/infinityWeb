@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from '../../../components/navBars/NavBar'
 import Footer from '../../../components/navBars/Footer'
+import BlogPageSideBar from '../components/BlogPageSideBar'
 
 const BlogPage = () => {
   return (
@@ -11,24 +12,8 @@ const BlogPage = () => {
         <div className='page'>
           <div className='inline-flex flex-row'>
 
-            <div className='col w-3/12'>
-              <div className='topics-col m-6 p-6 bg-blue-300 rounded-3xl'>
-                <div className='text-xl'>Similar Topics</div>
-                <ul className='my-4'>
-                  <li className='my-4'><div className='inline-flex flex-row'><p className='topics-name mr-3'>Web Technologies</p><p className='number-articles text-sm'>37.3k+ articles</p></div></li>
-                  <li className='my-4'><div className='inline-flex flex-row'><p className='topics-name mr-3'>Web Technologies</p><p className='number-articles text-sm'>37.3k+ articles</p></div></li>
-                  <li className='my-4'><div className='inline-flex flex-row'><p className='topics-name mr-3'>Web Technologies</p><p className='number-articles text-sm'>37.3k+ articles</p></div></li>
-                  <li className='my-4'><div className='inline-flex flex-row'><p className='topics-name mr-3'>Web Technologies</p><p className='number-articles text-sm'>37.3k+ articles</p></div></li>
-                  <li className='my-4'><div className='inline-flex flex-row'><p className='topics-name mr-3'>Web Technologies</p><p className='number-articles text-sm'>37.3k+ articles</p></div></li>
-                  <li className='my-4'><div className='inline-flex flex-row'><p className='topics-name mr-3'>Web Technologies</p><p className='number-articles text-sm'>37.3k+ articles</p></div></li>
-                  <li className='my-4'><div className='inline-flex flex-row'><p className='topics-name mr-3'>Web Technologies</p><p className='number-articles text-sm'>37.3k+ articles</p></div></li>
-                  <li className='my-4'><div className='inline-flex flex-row'><p className='topics-name mr-3'>Web Technologies</p><p className='number-articles text-sm'>37.3k+ articles</p></div></li>
-                  <li className='my-4'><div className='inline-flex flex-row'><p className='topics-name mr-3'>Web Technologies</p><p className='number-articles text-sm'>37.3k+ articles</p></div></li>
-                </ul>
-              </div>
-            </div>
-
-            <div className='col w-6/12'>
+            <BlogPageSideBar />
+            {/* <div className='col w-6/12'>
               <div className='cards bg-blue-300 rounded-3xl flex flex-row p-6 my-6 content-between'>
 
                   <div className='card w-7/12'>
@@ -241,7 +226,7 @@ const BlogPage = () => {
               <div className='bg-blue-300 m-6 rounded-3xl'>
               <img src='/' />
               </div>
-            </div>
+            </div> */}
 
           </div>
         </div>
