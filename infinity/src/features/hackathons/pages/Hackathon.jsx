@@ -56,18 +56,18 @@ const Hackathon = () => {
                     </div>
                     <hr className='mt-5'/>
                     {/* now we are going to define the options to options to the user to register for the hackathons */}
-                    <div className='w-full flex justify-between px-5 my-2'>
-                      <div className='flex md:space-x-5 space-x-2 xl:space-x-7'>
-                        <div className='px-1 md:px-2 lg:px-3 py-2 border text-md rounded-md hover:bg-blue-500'>Watchlist</div>
-                        <div className='lg:px-3 px-1 md:px-2 py-2 border text-md rounded-md hover:bg-blue-500'>Calender</div>
+                    <div className='w-full flex justify-between lg:px-5 px-3 my-2 flex-wrap'>
+                      <div className='flex md:space-x-4 space-x-2 xl:space-x-6 pt-2 md:pt-0'>
+                        <div className='px-1 md:px-2 lg:px-3 py-2 border text-md rounded-md hover:bg-blue-500 text-sm md:text-md lg:tex-lg'>Watchlist</div>
+                        <div className='lg:px-3 px-1 md:px-2 py-2 border text-md rounded-md hover:bg-blue-500 text-sm md:text-md lg:tex-lg'>Calender</div>
                       </div>
-                      <div className='flex items-center space-x-5 '>
-                        <div><p className='lg:text-xl md:text-lg text-md  font-semibold'>Free</p></div>
-                        <div><button className='md:px-3 px-2 py-2 bg-blue-200 hover:bg-blue-500 rounded-sm'>Register</button></div>
+                      <div className='flex items-center space-x-5  pt-2 md:pt-0'>
+                        <div><p className='lg:text-xl md:text-lg text-md  font-semibold text-sm md:text-md lg:tex-lg'>Free</p></div>
+                        <div><button className='md:px-3 px-2 py-2 bg-blue-200 hover:bg-blue-500 rounded-sm text-sm md:text-md lg:tex-lg'>Register</button></div>
                       </div>
                     </div>
               </div>
-              <div className='w-full rounded-md bg-white  flex-row border flex justify-between p-3 mt-1'>
+              <div className='w-full rounded-md bg-white  flex-row border flex justify-between p-3 mt-1 flex-wrap'>
                  <EventWidget />
                 <EventWidget />
                 <EventWidget />

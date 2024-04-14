@@ -5,12 +5,14 @@ const NavBar = () => {
   return (
     <div className=''>
       <nav className='bg-white shadow-md top-0 w-full z-50'>
-        <div className='content px-4  flex flex-row justify-between items-center '>
+        <div className='content lg:px-4 md:px-2 flex flex-row justify-between items-center '>
             {/* going to define the logo of the webpag */}
-            <a href="/" className=''>
-            <img src={logo} alt="" className="w-15 md:w-20 lg:w-22 object-contain xl:ml-25 lg:ml-15 md:ml-13 ml-10" />
-            </a>
-            <div >
+            <div className='lg:ml-10 md:ml-3 ml-2 lg:w-[90px] md:w-[70px] w-[55px]  mt-0'>
+                <a href="/" className=''>
+                  <img src={logo} alt="" class="max-w-full object-cover w-full" />
+                </a>
+            </div>
+            <div className=''>
                 <ul className=' flex-row hidden lg:flex '>
                     <li>
                         <a href="" className="py-3 px-5 hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">
@@ -32,17 +34,17 @@ const NavBar = () => {
            <div className=''>
             <ul className='flex flex-row items-center'>
                 <li>
-                    <a href="" className="py-3 px-5 hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Host a Hackathon</a></li>
-                <li className='w-6 mx-3'>
+                    <a href="" className="md:inline-flex hidden lg:py-3 md:py-1 py-1 lg:px-5 md:px-3 px-1 hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Host a Hackathon</a></li>
+                <li className='w-6 mt-5 mx-3'>
                     <a href="" className='mr-8 py-3' >
                         <img src={icon} alt="Search Icon" />
                     </a>
                 </li>
                 <li>
-                    <button className='py-3 px-5  hover:bg-blue-50 text-dark-blue lg:font-medium text-md  hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400'>Login</button>
+                    <button className='lg:py-3 md:py-1 py-1 lg:px-5 md:px-3 px-1 hover:bg-blue-50 text-dark-blue lg:font-medium text-md  hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400'>Login</button>
                 </li>
                 <li>
-                    <button className='py-2 bg-blue-500 text-white mx-2 px-4 py-1 text-sm font-semibold  hover:bg-blue-600 focus:outline-none'>Sign Up</button>
+                    <button className='py-1 md:py-1 lg:py-3 bg-blue-500 text-white mx-4 md:mx-3 px-2 text-sm font-semibold  hover:bg-blue-600 focus:outline-none'>Sign Up</button>
                 </li>
             </ul>
            </div>

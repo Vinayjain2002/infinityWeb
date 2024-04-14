@@ -6,6 +6,7 @@ import EventWidget from '../components/EventWidget';
 import PrizesComponent from '../components/PrizesComponent';
 import Oppertunity from '../components/Oppertunity';
 import Footer from '../../../components/navBars/Footer';
+import Tags from '../components/Tags';
 
 const DetailedHackathon = () => {
   const [RaiseOpinion, setRaiseOpinion]=useState(false);
@@ -42,11 +43,10 @@ const DetailedHackathon = () => {
               </div>
               <div className='mt-3'>
                     <ul className='flex space-x-3'>
-                      <li className='p-1 rounded-md border bg-blue-100 hover:bg-blue-200'>#coding Challenge</li>
-                      <li className='p-1 rounded-md border bg-blue-100 hover:bg-blue-200'>#Hackathons</li>
-                      <li className='p-1 rounded-md border bg-blue-100 hover:bg-blue-200'>#Hackathons</li>
-                      <li className='p-1 rounded-md border bg-blue-100 hover:bg-blue-200'>#Hackathons</li>
-
+                                <li><Tags /></li>
+                                <li><Tags /></li>
+                                <li><Tags /></li>
+                                <li><Tags /></li>
                     </ul>
               </div>
             </div>
@@ -150,50 +150,17 @@ const DetailedHackathon = () => {
                 </div>
                 <hr />
                 <div>
-                  <ul>
-                    <li>
-                      <div className='flex px-5 py-3'>
-                        <div className='w-1/6 rounded-md bg-black'><img></img></div>
-                        <div className='flex-col ml-3'>
-                            <p className='text-md text-gray-500'>Registered</p>
-                            <p className='text-md text-gray-800'>400</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className='flex px-5 py-3'>
-                        <div className='w-1/6 rounded-md bg-black'><img></img></div>
-                        <div className='flex-col ml-3'>
-                            <p className='text-md text-gray-500'>Registered</p>
-                            <p className='text-md text-gray-800'>400</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className='flex px-5 py-3'>
-                        <div className='w-1/6 rounded-md bg-black'><img></img></div>
-                        <div className='flex-col ml-3'>
-                            <p className='text-md text-gray-500'>Registered</p>
-                            <p className='text-md text-gray-800'>400</p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className='flex px-5 py-3'>
-                        <div className='w-1/6 rounded-md bg-black'><img></img></div>
-                        <div className='flex-col ml-3'>
-                            <p className='text-md text-gray-500'>Registered</p>
-                            <p className='text-md text-gray-800'>400</p>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+                    <div className='w-full rounded-md bg-white  flex-col space-y-3 border flex justify-between p-3 mt-1 flex-wrap'>
+                    <EventWidget />
+                    <EventWidget />
+                    <EventWidget />
+                  </div>
                 </div>
                 <hr />
                 {/* we are going to define the sectio of the Watchlist and the container */}
-                <div className='w-full px-10 py-3 flex justify-between '>
-                  <div className='px-3 py-2 border rounded-md'>WatchList</div>
-                  <div className='px-3 py-2 border rounded-md'>Calender</div>
+                <div className='w-full cl:px-10 lg:px-5 px-2 py-3 flex justify-between '>
+                  <div className='lg:px-3 px-2 lg:py-2 py-1 border rounded-md'>WatchList</div>
+                  <div className='lg:px-3 px-2 lg:py-2 py-1 border rounded-md'>Calender</div>
                 </div>
               </div>
 
