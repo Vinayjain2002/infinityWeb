@@ -57,12 +57,13 @@ const LoginAsAdmin = () => {
       <div className='xl:w-1/2 lg:w-3/5 md:w-4/5 sm:w-3/5 w-4/5'> 
       {/* here the this full div is not coming in the center  */}
         <p className="text-left text-blue-500 text-4xl font-bold">Welcome Admin</p>
-        <form className="flex  flex-col" onSubmit={submitForm}>
+        <p className='text-left text-gray-400 mt-2 text-2xl font-semibold'>Good to see you again</p>
+        <form className="flex mt-5 flex-col" onSubmit={submitForm}>
           <label htmlFor="email" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Email:</label>
           <input type="text" id="email" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="email" />
           <label htmlFor="password" className="text-gray-500 ld:text-md 2xl:text-lg text-md mt-4">Password:</label>
-          <input type="password" id="password" className="border px-2 py-1 border-gray-300 w-1/2 focus:outline-none focus:border-blue-500 text-gray-600 text-sm" onChange={onChangeHandler} name="password" />
-          <button type="submit" className="bg-blue-500 text-white w-1/2 text-sm font-semibold px-4 py-2 mt-4 hover:bg-blue-600 focus:outline-none">Login</button>
+          <input type="password" id="password" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="password" />
+          <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">Login</button>
           <p className="text-gray-500 text-md  mt-4">Don't have an account? <a href="/adminsignup" className="text-blue-500">Sign Up</a></p>
         </form>
       </div>

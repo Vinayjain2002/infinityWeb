@@ -1,12 +1,12 @@
 
 import React from 'react'
-import NavBar from '../../../components/navBars/NavBar'
-import Footer from '../../../components/navBars/Footer';
-import ProjectRecomendations from '../components/ProjectRecomendations';
-import Objective from '../components/Objective';
-import ProjectDetails from '../components/ProjectDetails';
-import DetailedProjectImage from '../components/DetailedProjectImage';
-import DetailedProjectVideo from '../components/DetailedProjectVideo'
+import NavBar from '../../../components/navBars/NavBar.tsx'
+import Footer from '../../../components/navBars/Footer.tsx';
+import ProjectRecomendations from '../components/ProjectRecomendations.tsx';
+import Objective from '../components/Objective.tsx';
+import ProjectDetails from '../components/ProjectDetails.tsx';
+import DetailedProjectImage from '../components/DetailedProjectImage.tsx';
+import DetailedProjectVideo from '../components/DetailedProjectVideo.tsx'
 const DetailedProjects = () => {
   return (
     <div>

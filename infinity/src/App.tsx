@@ -2,18 +2,19 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import { useEffect } from 'react';
-import LoginAsAdmin from  './features/auth/pages/AdminAuthPages/LoginAsAdmin'
-import RegisterAsAdmin from './features/auth/pages/AdminAuthPages/RegisterAsAdmin';
-import LoginUser from './features/auth/pages/UserAuthPages/LoginUser';
-import SignUpUser from './features/auth/pages/UserAuthPages/SignUpUser'
-import PasswordResetPage from './features/auth/pages/Password.jsx'
-import HomePage from './features/homeScreen/pages/HomePage';
-import Preferences from './features/auth/pages/UserAuthPages/Prefference'
-import Hackathon from './features/hackathons/pages/Hackathon'
-import BlogPage from './features/blogs/pages/BlogPage';
-import DetailedHackathon from './features/hackathons/pages/DetailedHackathon';
-import Project from './features/projects/pages/Projects'
-import DetailedProject from './features/projects/pages/DetailedProjects'
+import LoginAsAdmin from  './features/auth/pages/AdminAuthPages/LoginAsAdmin.js'
+import RegisterAsAdmin from './features/auth/pages/AdminAuthPages/RegisterAsAdmin.js';
+import LoginUser from './features/auth/pages/UserAuthPages/LoginUser.js';
+import SignUpUser from './features/auth/pages/UserAuthPages/SignUpUser.js'
+import PasswordResetPage from './features/auth/pages/Password.js'
+import HomePage from './features/homeScreen/pages/HomePage.js';
+import Preferences from './features/Account/pages/Prefference.js'
+import Hackathon from './features/hackathons/pages/Hackathon.js'
+import BlogPage from './features/blogs/pages/BlogPage.js';
+import DetailedHackathon from './features/hackathons/pages/DetailedHackathon.js';
+import Project from './features/projects/pages/Projects.js'
+import DetailedProject from './features/projects/pages/DetailedProjects.js'
+import Account from './features/Account/pages/Account.js'
 
 const firebaseConfig = {
   apiKey: "AIzaSyCvdwjk8ycZiGgOZHA7A0fztozG3R57nHA",
@@ -46,6 +47,7 @@ const App = () => {
         <Route path='/blog' element={<BlogPage />}/>
         <Route path='/project' element={<Project />}/>
         <Route path='/detailProject' element={<DetailedProject />}/>
+        <Route path='/account' element={<Account />} />
       </Routes>
     </div>
   </Router>

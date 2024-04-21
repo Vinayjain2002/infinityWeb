@@ -35,7 +35,7 @@ const Hackathon = () => {
               <div className='md:w-3/5 w-full mt-2 md:ml-3 ml-0'>
                  <div className='w-full mt-1 bg-white h-auto flex-col border rounded-md'>
                     <div className='w-full px-5 py-5 flex'>
-                      <div className='w-1/5 bg-black rounded-md overflow-hidden'><img src={hackathonImage}/></div>
+                      <div className='w-1/5 bg-black rounded-md overflow-hidden max-h-25'><img src={hackathonImage} className='h-25'/></div>
                       <div className='w-4/5 flex flex-col ml-3'>
                             <p className='text-lg md:text-xl xl:text-2xl font-bold '>MIH 2.O Mind Installers Hackathon</p>
                             <p className='text-xs md:text-sm mt-2'>IIMT College Of Engineering (IIMT COE), Greater Noida</p>
@@ -67,7 +67,7 @@ const Hackathon = () => {
                       </div>
                     </div>
               </div>
-              <div className='w-full rounded-md bg-white  flex-row border flex justify-between p-3 mt-1 flex-wrap'>
+              <div className='w-full rounded-md bg-white space-y-5  flex-col border flex justify-between p-3 mt-1 flex'>
                  <EventWidget />
                 <EventWidget />
                 <EventWidget />

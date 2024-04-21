@@ -19,7 +19,7 @@ const SignUpUser = () => {
   const [isLoading,setisLoading]= useState(false);
 
   // here we are going to define the code to save the username and the password
-  const checkUsername= (username)=> {
+  const checkUsername= (username: string)=> {
     const regex = /^\S{2,15}$/;
     const result= regex.test(username);
     if(!result){
@@ -28,7 +28,7 @@ const SignUpUser = () => {
     return result;
   }
 
-  const checkMobileNo= (mobileno)=>{
+  const checkMobileNo= (mobileno: string)=>{
     try{
       const regex = /^[0-9]{10}$/;
       const result= regex.test(mobileno);
@@ -43,7 +43,7 @@ const SignUpUser = () => {
   }
 
   // we are going to check is the email entered by the user is valid or not
-  const checkEmail= (email)=>{
+  const checkEmail= (email:string)=>{
     try{
       const regex = /^[^\s!#$%&'*+/=?^_`{|}~-]+(?:\.[^\s!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
       const result= regex.test(email);
@@ -57,7 +57,7 @@ const SignUpUser = () => {
     }
   }
 
-  const onChangeHandler= (event)=>{
+  const onChangeHandler= (event: React.ChangeEvent<HTMLInputElement> )=>{
     const {name,value}= event.target;
     if(name==="username"){
       setusername(value);
@@ -69,7 +69,7 @@ const SignUpUser = () => {
       setemail(value);
     }
   }
-  const submitForm= async(e)=>{
+  const submitForm= async(e: React.ChangeEvent<HTMLInputElement>)=>{
     e.preventDefault();
     setisLoading(true);
     console.log(email);

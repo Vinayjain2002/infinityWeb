@@ -1,9 +1,9 @@
 import React from 'react'
-import NavBar from '../../../components/navBars/NavBar';
-import Footer from '../../../components/navBars/Footer';
-import ProjectCard from '../components/ProjectCard';
-import SearchBar from '../components/SearchBar';
-import ProjectNavBar from '../components/ProjectNavBar';
+import NavBar from '../../../components/navBars/NavBar.tsx';
+import Footer from '../../../components/navBars/Footer.tsx';
+import ProjectCard from '../components/ProjectCard.tsx';
+import SearchBar from '../components/SearchBar.tsx';
+import ProjectNavBar from '../components/ProjectNavBar.tsx';
 const Projects = () => {
   return (
     <div>

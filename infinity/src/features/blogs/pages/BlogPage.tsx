@@ -1,9 +1,10 @@
 import React from 'react'
-import NavBar from '../../../components/navBars/NavBar'
-import Footer from '../../../components/navBars/Footer'
+import NavBar from '../../../components/navBars/NavBar.tsx'
+import Footer from '../../../components/navBars/Footer.tsx'
 import BlogPageSideBar from '../components/BlogPageSideBar'
 import BlogPageBlogs from '../components/BlogPageBlogs'
 import AddSection from '../components/AddSection'
+import ChatAssistant from '../../../components/chatAssistant/ChatAssistant.tsx'
 
 const BlogPage = () => {
   return (
@@ -28,6 +29,9 @@ const BlogPage = () => {
               <div className='hidden lg:flex w-1/3'>
                 <AddSection />
               </div>
+          </div>
+          <div>
+            <ChatAssistant />
           </div>
           <Footer />
 

@@ -195,20 +195,20 @@ const SkillsInput = () => {
       {id: "Middle School", label: "Middle School"}
     ]
     return (
-     <div className='flex flex-row w-full'>
-      <div className='w-1/5 mt-5 mb-1 font-bold mx-2 text-dark-blue text-md font-semibold'>Current Level:</div>
-       <div className="flex flex-wrap w-full">
+     <div className='flex mt-3 flex-row w-full'>
+      <div className='w-1/5 font-bold text-dark-blue text-md font-semibold'>Current Level:</div>
+       <div className="flex flex-wrap space-x-5  w-full">
         {options.map((option) => (
-          <div className=" px-5 w-1/5 border border-gray-300 hover:border-dark-blue mx-2 my-2 rounded-md" key={option.id}>
+          <div className="border border-gray-300 px-4 hover:border-dark-blue rounded-md" key={option.id}>
             <input
               type="checkbox"
               id={option.id}
               name={option.id}
               // checked={selectedCheckboxes.includes(option.id)}
               // onChange={handleCheckboxChange}
-              className='mr-2'
+              className=''
             />
-            <label htmlFor={option.id} className="font-sm text-gray-500 ">
+            <label htmlFor={option.id} className="font-sm ml-3 text-gray-500 ">
               {option.label}
             </label>
           </div>
@@ -254,6 +254,53 @@ const SkillsInput = () => {
       </div>
     )
   }  
-    
   
-export {PrefferenceCheckboxes, LevelOptions,SkillsInput, PrefferedHackathons,SocialMedia};
+  const InputComponent = () => {
+    return (
+         <div className= 'flex mt-3 w-full'>
+              <label htmlFor="" className='w-1/6 text-dark-blue text-md font-semibold'>Location:</label>
+              <div className='px-3 border  focus:border-none focus:outline-none text-center rounded-md'><input type="text" className='border-none focused:border-none hover:border-none focused:outline-none' placeholder='Location here'/></div>
+          </div>
+    )
+  }
+  
+  const TwoOptionComponent= ()=>{
+    return(
+      <div className='block mt-3'>
+        <div className='text-dark-blue text-md font-semibold'><label>Are you interested in Fests:</label></div>
+        <div className='flex flex-row ml-5 space-x-8'>
+          <div className='flex space-x-2'>
+          <input type="radio" id="yes" name="answer" value="yes" />
+              <label for="yes" className='text-dark-blue text-md font-normal'>Yes</label>
+          </div>
+          <div className='flex space-x-2'>
+          <input type="radio" id="no" name="answer" value="no" />
+              <label for="no" className='text-dark-blue text-md font-normal'>No</label>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  const DateSelector= ()=>{
+      // here we are are going to define the component through which the user will get the data of te Dates
+    return(
+     <div className="w-full mt-3 flex">
+          <p className='w-1/6 font-bold text-dark-blue text-md font-semibold'>Birth Date</p>
+          <div class="flex flex-row w-4/5" className='space-x-3'>
+          <label for="month" className='font-bold text-dark-blue text-md font-semibold'>Month:</label>
+          <select id="month" name="month" className='px-2 py-1 border-dark-blue'>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="12">December</option>
+          </select>
+        
+          <label for="year" className=' font-bold text-dark-blue text-md font-semibold'>Year:</label>
+          <input type="number" id="year" name="year" min="2000" max="2024" className='border rounded-md border-dark-blue px-2'/>
+        </div>
+     </div>
+    );
+
+  }
+  
+export {PrefferenceCheckboxes, LevelOptions,SkillsInput, PrefferedHackathons,SocialMedia, InputComponent, TwoOptionComponent,DateSelector};

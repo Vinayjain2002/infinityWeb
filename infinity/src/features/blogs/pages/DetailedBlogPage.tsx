@@ -1,8 +1,8 @@
 import React from 'react'
 import banner from '../../../assets/images/banner.jpg'
 import loginflex from '../../../assets/images/loginflex.png'
-import NavBar from '../../../components/navBars/NavBar'
-import Footer from '../../../components/navBars/Footer';
+import NavBar from '../../../components/navBars/NavBar.tsx'
+import Footer from '../../../components/navBars/Footer.tsx';
 
 const DetailedBlogPage = () => {
    return (

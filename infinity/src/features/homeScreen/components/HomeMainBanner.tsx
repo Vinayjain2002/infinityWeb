@@ -4,7 +4,7 @@ const HomeMainBanner = () => {
   return (
     <div>
       <div className='bg-hover-blue'>
-       <div className=' py-5 ml-10 mr-10'>
+       <div className=' py-5 mx-10'>
        <div class='flex flex-col lg:w-1/3 md:w-1/2 w-2/3 h-1/4 mt-10'>
                 {/* <img src={banner} alt="" className='w-full'/> */}
 
@@ -12,11 +12,11 @@ const HomeMainBanner = () => {
                 <div className='w-full my-3'>
                   <p className='font-bold text-2xl lg:text-4xl md:text-3xl'>Where Ideas Ignite </p>
                 </div>
-                <p className='text-sm md:text-md '>Where organizations and developers come together to build, inspire, and innovate.</p>
+                <p className='text-sm md:text-md font-normal'>Where organizations and developers come together to build, inspire, and innovate.</p>
 
                 <div className='flex flex-row my-3'>
-                  <button className='mr-2 bg-blue-500 text-white w-1/2 text-md font-semibold xl:px-4 md:px-2 px-1  py-2 lg:py-3 mt-4 hover:bg-blue-600 focus:outline-none text-sm md:text-md'>For Developers</button>
-                  <button className='ml-2 bg-blue-50 text-black w-1/2 text-md font-semibold xl:px-4 md:px-2 px-1 py-2 lg:py-3 mt-4 focus:bg-blue-50 focus:outline-none text-sm md:text-md'>For Organiser</button>
+                  <button className='mr-2 bg-blue-500 text-white w-1/2 text-sm lg:text-md font-semibold xl:px-4 md:px-2 px-1  py-2 lg:py-3 mt-4 hover:bg-blue-600 focus:outline-none text-sm md:text-md'>For Developers</button>
+                  <button className='ml-2 bg-blue-50 text-black w-1/2 text-sm lg:text-md font-semibold xl:px-4 md:px-2 px-1 py-2 lg:py-3 mt-4 focus:bg-blue-50 focus:outline-none text-sm md:text-md'>For Organiser</button>
                 </div>
               </div>
             <div className='flex flex-row mt-5'>

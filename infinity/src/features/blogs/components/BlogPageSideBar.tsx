@@ -1,5 +1,5 @@
 import React from 'react'
-import BlogPageSideBarLine from './BlogPageSideBarLine'
+import BlogPageSideBarLine from './BlogPageSideBarLine.tsx'
 
 const BlogPageSideBar = () => {
   return (
