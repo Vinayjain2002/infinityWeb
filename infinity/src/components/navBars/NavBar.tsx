@@ -9,13 +9,13 @@ const NavBar = () => {
             {/* going to define the logo of the webpag */}
             <div className='lg:ml-10 md:ml-3 ml-2 lg:w-[90px] md:w-[70px] w-[55px]  mt-0'>
                 <a href="/" className=''>
-                  <img src={logo} alt="" class="max-w-full object-cover w-full" />
+                  <img src={logo} alt="" className="max-w-full object-cover w-full" />
                 </a>
             </div>
             <div className=''>
                 <ul className=' flex-row hidden lg:flex '>
                     <li>
-                        <a href="" className="py-3 px-5 hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">
+                        <a href="/hackathon" className="py-3 px-5 hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">
                             Hackathons
                         </a>
                     </li>
