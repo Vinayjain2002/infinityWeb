@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const QuickQuestion = () => {
     const [activeQusetionId, setActiveQuestionId]= useState(null);
+
     const handleAnswertToggle= (questionId)=>{
         if(questionId==activeQusetionId){
           setActiveQuestionId(null);
@@ -13,11 +14,11 @@ const QuickQuestion = () => {
         }
     }
   return (
-    <div className='mx-2'>
-      <div className='rounded-md'>
-       <div className='rounded-md my-10'>
+    <div className='bg-white  mx-2.5 rounded-md'>
+      <div className='w-full'>
+       <div className=' py-5 px-3'>
                 <div><p className='text-lg lg:text-xl xl:text-2xl text-dark-blue font-semibold'>Frequently Asked Questions</p></div>
-                <ul className='py-3 ml-2'>
+                <ul className='py-3'>
                   <li key="q1" onClick={()=>handleAnswertToggle("q1")} className='text-dark-blue my-2 text-md'>What is a hackathon?
                       <div className={activeQusetionId=== "q1" ? "" : "hidden"}><p className='text-sm xl:text-md text-gray-500 font-normal ml-5'>A hackathon is a coding marathon where teams create software or hardware solutions </p></div>
                   </li>

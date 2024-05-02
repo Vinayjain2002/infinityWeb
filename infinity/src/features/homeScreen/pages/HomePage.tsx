@@ -5,10 +5,16 @@ import HomeMainBanner from '../components/HomeMainBanner';
 // import NearByEvents from '../components/NearByEvents';
 import Footer from '../../../components/navBars/Footer'
 import NearByEvents from '../components/NearByEvents';
+import ChatAssistant from '../../../components/chatAssistant/ChatAssistant';
+import Fest from '../../fests/pages/AllFests';
+import FestCard from '../../../components/Cards/FestCard';
+import BootCampCard from '../../../components/Cards/BootCampCard';
 
 const HomePage = () => {
+ 
   return (
     <div>
+      <ChatAssistant />
         <NavBar />
        <HomeMainBanner />
         <div className='flex justify-center mt-5'>
@@ -26,9 +32,10 @@ const HomePage = () => {
               <div className=' w-full text-2xl'>
                 <p className='font-bold md:text-md lg:text-xl text-2xl'>Hackathons for You</p>
                 <div className='md:w-3/5 w-full'>
-                  <HackathonCard />
-                  <HackathonCard />
-                  <HackathonCard />
+                  <a href="/hackathon/2"><HackathonCard heading="Google Ai Hackathons" daysLeft="20 days left" mode="online" imageUrl="vkre" prizes="$50,000 in Prizes" participants="11006 participants" /></a>
+                  <a href="/hackathon/3"><HackathonCard heading="Google Ai Hackathons" daysLeft="20 days left" mode="online" imageUrl="vkre" prizes="$50,000 in Prizes" participants="11006 participants" /></a>
+                  <a href="/hackathon/4"><HackathonCard heading="Google Ai Hackathons" daysLeft="20 days left" mode="online" imageUrl="vkre" prizes="$50,000 in Prizes" participants="11006 participants" /></a>
+
                 </div>
               </div>
                 <div className='hidden md:flex flex-col md:w-2/5 lg:w-2/5 text-2xl'>
@@ -37,7 +44,9 @@ const HomePage = () => {
                 </div>
             </div>
             <div className='w-full flex justify-center mt-5'>
-                <button className='px-3 py-2 bg-blue-500 text-white text-sm font-semibold px-5 py-3 hover:bg-blue-600 focus:outline-none rounded-sm'>View All Hackathons</button>
+                <a href="/hackathon" className='px-3 py-2 bg-blue-500 text-white text-md font-semibold px-5 py-3 hover:bg-blue-600 focus:outline-none rounded-sm'>
+                  View All Hackathons
+                </a>
             </div>
           </div>
 
@@ -47,19 +56,19 @@ const HomePage = () => {
             <div className='flex-row flex justify-between'>
                     <div><p className='2xl:text-4xl xl:text-3xl lg:text-2xl text-xl text-white font-semibold lg:font-normal'>Featured Fests</p></div>
                     <div>
-                      <button className='px-3 py-2 bg-white rounded-sm text-blue-700 ml-1/5 text-xs md:text-md xl:text-lg font-semibold lg:font-normal'>Browse different Fests</button>
+                      <a href="/fest" className='px-3 py-3 bg-white rounded-sm text-blue-700 ml-1/5 text-xs md:text-md xl:text-lg font-semibold lg:font-normal'>Browse different Fests</a>
                     </div>
                   </div>
                   <div className=' w-full mr-5 mt-2'>
                       <div className='w-full flex md:flex-row space-x-2 flex-col'>
                           <div className='md:w-4/5'>
-                            <HackathonCard/>
-                            <HackathonCard />
+                              <a href="/fest/2"><FestCard imageUrl="mfn" description='A hackathon organised by the coders club' festName="Konark" daysLeft="20 Days left" entryFee="$200" location="Hisar" tags={["Fests","Hackathon", "Coding"]}/></a>
+                              <a href="/fest/2"><FestCard imageUrl="mfn" description='A hackathon organised by the coders club' festName="Konark" daysLeft="20 Days left" entryFee="$200" location="Hisar" tags={["Fests","Hackathon", "Coding"]}/></a>
                             </div>
                           <div className='md:w-4/5'>
-                            <HackathonCard/>
-                            <HackathonCard />
-                            </div>
+                              <a href="/fest/2"><FestCard imageUrl="mfn" description='A hackathon organised by the coders club' festName="Konark" daysLeft="20 Days left" entryFee="$200" location="Hisar" tags={["Fests","Hackathon", "Coding"]}/></a>
+                              <a href="/fest/2"><FestCard imageUrl="mfn" description='A hackathon organised by the coders club' festName="Konark" daysLeft="20 Days left" entryFee="$200" location="Hisar" tags={["Fests","Hackathon", "Coding"]}/></a>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -71,18 +80,19 @@ const HomePage = () => {
                   <div className='flex-row flex justify-between'>
                     <div><p className='2xl:text-4xl xl:text-3xl lg:text-2xl text-xl text-white font-semibold lg:font-normal'>Featured Bootcamps</p></div>
                     <div>
-                      <button className='px-3 py-2 bg-white rounded-sm text-blue-700 ml-1/5 text-xs md:text-md xl:text-lg font-semibold lg:font-normal'>Browse different Bootcamps</button>
+                      <a href="/bootcamp" className='px-3 py-3 bg-white rounded-sm text-blue-700 ml-1/5 text-xs md:text-md xl:text-lg font-semibold lg:font-normal'>Browse different Bootcamps</a>
                     </div>
                   </div>
                   <div className=' w-full mr-5 mt-2 '>
                       <div className='w-full flex md:flex-row space-x-2 flex-col'>
                           <div className='md:w-4/5'>
-                            <HackathonCard/>
-                            <HackathonCard />
+                            <a href="/bootcamp/2"><BootCampCard imageUrl="string" name="Web dev" description='A complete guide of the frontened Web development' duration='30 minutes' daysLeft='10 days' mode="online" entryFee='free' techStack={["Html", "Css", "React", "JavaScript"]}/></a>
+                            <a href="/bootcamp/3"><BootCampCard imageUrl="string" name="Web dev" description='A complete guide of the frontened Web development' duration='30 minutes' daysLeft='10 days' mode="online" entryFee='free' techStack={["Html", "Css", "React", "JavaScript"]}/></a>
                           </div>
                           <div className='md:w-4/5'>
-                            <HackathonCard/>
-                            <HackathonCard />
+                              <a href="/bootcamp/3"><BootCampCard imageUrl="string" name="Web dev" description='A complete guide of the frontened Web development' duration='30 minutes' daysLeft='10 days' mode="online" entryFee='free' techStack={["Html", "Css", "React", "JavaScript"]}/></a>
+                              <a href="/bootcamp/3"><BootCampCard imageUrl="string" name="Web dev" description='A complete guide of the frontened Web development' duration='30 minutes' daysLeft='10 days' mode="online" entryFee='free' techStack={["Html", "Css", "React", "JavaScript"]}/></a>
+
                             </div>
                       </div>
                   </div>

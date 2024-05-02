@@ -5,10 +5,10 @@ import { initializeApp } from "firebase/app";
 import loginimage from '../../../../assets/images/theme.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Addvertisement from '../../../../components/Adds/Addvertisement.tsx'
 import 'firebase/auth'; 
 // import { signInWithPopup } from "firebase/auth";
 import { getAuth,GoogleAuthProvider , signInWithRedirect} from "firebase/auth";
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyCvdwjk8ycZiGgOZHA7A0fztozG3R57nHA",
@@ -139,6 +139,7 @@ const LoginUser = () => {
                 <div className='w-full'>
                     <a href="#" className=" text-blue-500 text-sm mt-1 ">Forgot password?</a>
                 </div>
+                {/* <Addvertisement /> */}
                 <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">
                     <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading} className='text-md xl:text-4xl'>
                           Login

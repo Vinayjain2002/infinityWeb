@@ -5,7 +5,7 @@ const HomeMainBanner = () => {
     <div>
       <div className='bg-hover-blue'>
        <div className=' py-5 mx-10'>
-       <div class='flex flex-col lg:w-1/3 md:w-1/2 w-2/3 h-1/4 mt-10'>
+       <div className='flex flex-col lg:w-1/3 md:w-1/2 w-2/3 h-1/4 mt-10'>
                 {/* <img src={banner} alt="" className='w-full'/> */}
 
                 {/* we are going to define the data that will be going to use the data  of the poster above */}

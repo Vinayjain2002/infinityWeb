@@ -26,7 +26,7 @@ const Account = () => {
                    <AccountOptions heading="Account Management:" list={{"Email Notification:": "#", "Account & Privacy": "#","Password": "#"}}/>
                 </div>
                 <div className='w-2/3'>
-                  <AccountInfo />
+                  <Preffernces />
                 </div>
         </div>
         <Footer />

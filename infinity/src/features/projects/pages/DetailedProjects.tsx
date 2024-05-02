@@ -7,11 +7,16 @@ import Objective from '../components/Objective.tsx';
 import ProjectDetails from '../components/ProjectDetails.tsx';
 import DetailedProjectImage from '../components/DetailedProjectImage.tsx';
 import DetailedProjectVideo from '../components/DetailedProjectVideo.tsx'
+import ProjectNavBar from '../components/ProjectNavBar.tsx';
 const DetailedProjects = () => {
   return (
     <div>
     <div className='relative'>
       <NavBar />
+      <div>
+      </div>
+          <ProjectNavBar />
+      </div>
      <div className='w-full flex'>
         <ProjectRecomendations />
           {/* here we are going to define teh other Sections of the webpage like the data */}
@@ -28,10 +33,7 @@ const DetailedProjects = () => {
      </div>
         
       <Footer />
-</div>
-</div>
-
-  );
+</div>  );
 }
 
 export default DetailedProjects

@@ -271,11 +271,11 @@ const SkillsInput = () => {
         <div className='flex flex-row ml-5 space-x-8'>
           <div className='flex space-x-2'>
           <input type="radio" id="yes" name="answer" value="yes" />
-              <label for="yes" className='text-dark-blue text-md font-normal'>Yes</label>
+              <label htmlFor="yes" className='text-dark-blue text-md font-normal'>Yes</label>
           </div>
           <div className='flex space-x-2'>
           <input type="radio" id="no" name="answer" value="no" />
-              <label for="no" className='text-dark-blue text-md font-normal'>No</label>
+              <label htmlFor="no" className='text-dark-blue text-md font-normal'>No</label>
           </div>
         </div>
       </div>
@@ -295,7 +295,7 @@ const SkillsInput = () => {
             <option value="12">December</option>
           </select>
         
-          <label for="year" className=' font-bold text-dark-blue text-md font-semibold'>Year:</label>
+          <label htmlFor="year" className=' font-bold text-dark-blue text-md font-semibold'>Year:</label>
           <input type="number" id="year" name="year" min="2000" max="2024" className='border rounded-md border-dark-blue px-2'/>
         </div>
      </div>

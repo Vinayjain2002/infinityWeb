@@ -8,28 +8,28 @@ const Footer = () => {
               <div className='hidden md:flex flex-col'>
                 <div className='font-bold text-gray-700 text-sm'>Devpost</div>
                 <ul className='py-2 text-sm'>
-                  <li className='py-1 text-gray-700 hover:underline'><a>About</a></li>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Careers</a></li>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Contact</a></li>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Help</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href="/detail/about">About</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href="">Careers</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href="/detail/contact">Contact</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href='/detail/help'>Help</a></li>
                 </ul>
               </div>
               <div>
                 <div className='font-bold text-gray-700 text-sm'>Hackathons</div>
                 <ul className='py-2 text-sm'>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Browse Hackathons</a></li>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Explore Projects</a></li>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Host a hackathon</a></li>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Hackathon Guides</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href="/hackathon">Browse Hackathons</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href="/project">Explore Projects</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href="/hackathon/post">Host a hackathon</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href="/video">Explore Videos</a></li>
                 </ul>
               </div>
               <div>
                 <div className='font-bold text-gray-700 text-sm'>Events</div>
                 <ul className='py-2  text-sm'>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Browse Fests</a></li>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Explore Bootcamps</a></li>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Host Bootcamps</a></li>
-                  <li className='py-1 text-gray-700 hover:underline'><a>Explore Blogs</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href='/fest'>Browse Fests</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href='/fest/post'>Post Fest</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href='/bootcamp/post'>Host Bootcamps</a></li>
+                  <li className='py-1 text-gray-700 hover:underline'><a href='/blog'>Explore Blogs</a></li>
                 </ul>
               </div>
               <div>
