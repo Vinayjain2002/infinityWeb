@@ -99,7 +99,7 @@ const DetailedHackathon = () => {
             <div className='w-full mt-1 py-2 rounded-md border flex flex-col'>
               <div className='text-xl ml-5 text-dark-blue font-bold'><p>Featured Oppertunity</p></div>
               <div className='flex ml-5 mt-2 flex-row space-x-3'>
-                <Oppertunity />
+                {/* <Oppertunity /> */}
                 <Oppertunity />
               </div>
             </div>
@@ -168,8 +168,8 @@ const DetailedHackathon = () => {
                 {/* we are going to define the sectio of the Watchlist and the container */}
                 <div className='mx-1 rounded-md'>
                     <div className='w-4/5 xl:px-10 lg:px-5 px-2 pb-2 flex justify-between mx-auto'>
-                      <button className='lg:px-5 px-2 lg:py-2 py-1 border rounded-md hover:bg-blue-500 hover:text-white'>WatchList</button>
-                      <button className='lg:px-5 px-2 lg:py-2 py-1 border rounded-md hover:bg-blue-500 hover:text-white'>Calender</button>
+                      <button className='lg:px-5 px-2 lg:py-2 py-1 border rounded-md hover:bg-blue-300  hover:text-white'>WatchList</button>
+                      <button className='lg:px-5 px-2 lg:py-2 py-1 border rounded-md hover:bg-blue-300 hover:text-white'>Calender</button>
                     </div>
                 </div>
               </div>

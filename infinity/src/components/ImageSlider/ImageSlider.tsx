@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Banner from '../../assets/images/banner.jpg'
-import hackathom from '../../assets/images/hackathon.png'
+import banner1 from '../../assets/images/banners1.jpg'
+import banner2 from '../../assets/images/banner3.jpeg'
+import banner3 from '../../assets/images/banner4.jpeg'
+import banner4 from '../../assets/images/banner5.png'
 
 interface ImageSliderProps {
   images: string[];
@@ -11,7 +13,7 @@ interface ImageSliderProps {
 const ImageSlider: React.FC<ImageSliderProps> = ({ images, autoplay = false, interval = 3000 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAutoplayActive, setAutoplayActive] = useState(autoplay); // Use clearer name
-  const img=[Banner,hackathom];
+  const img=[banner2,banner1, banner3, banner4];
   useEffect(() => {
     if (isAutoplayActive) {
       const intervalId = setInterval(() => {
@@ -55,7 +57,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images, autoplay = false, int
 
             <button
               type="button"
-              className="absolute z-50 top-1/2 left-2 p-2 text-white bg-black bg-opacity-50 hover:bg-opacity-70 focus:outline-none rounded-full"
+              className="absolute z-50 top-1/2 left-2 p-2 text-white bg-black bg-opacity-50 hover:bg-opacity-70 focus:outline-none text-sm px-4 rounded-full"
               onClick={handlePrevClick}
             >
              Next
@@ -63,7 +65,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images, autoplay = false, int
 
             <button
               type="button"
-              className="absolute z-50 top-1/2 right-2 p-2 text-white bg-black bg-opacity-35  hover:bg-opacity-70 focus:outline-none  rounded-full"
+              className="absolute z-50 top-1/2 right-2 p-2 text-white bg-black bg-opacity-35  hover:bg-opacity-70 px-4 focus:outline-none text-sm rounded-full"
               onClick={handleNextClick}
             >
               Next

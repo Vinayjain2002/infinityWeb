@@ -6,6 +6,7 @@ import SearchBarComponent from '../../../components/SearchBar/SearchBarComponent
 import FilterCardsComponent from '../../../components/filters/FilterCards'
 import SortCardsComponents from '../../../components/filters/SortCards'
 import ChatAssistant from '../../../components/chatAssistant/ChatAssistant'
+import '../../../style.css'
 
 const handleMostRelevantClick=()=>{
 
@@ -49,26 +50,25 @@ const AllHackathons = () => {
                     <hr />
                 </div>
                 <div className='flex xl:mx-20 lg:mx-15 md:mx-7 mx-5 my-10'>
-                <div className='w-1/5 hidden lg:flex h-screen'>
-                    <div className='relative'>
-                        <aside className='sticky top-0'>
-                            <FilterCardsComponent />
-                        </aside>
+                    <div className='w-1/5 hidden lg:flex h-screen'>
+                        <div className='relative'>
+                            <aside className='sticky top-0'>
+                                <FilterCardsComponent />
+                            </aside>
+                        </div>
                     </div>
-                </div>
-
-
                     <div className='lg:w-4/5'>
                         <div>
                             <div className=''>
                                 <SortCardsComponents noOfResults='100000 Results Found' buttons= {Sortbuttons}/>
                             </div>
                             {/* we need to define a filter here */}
-                            <div className='w-full flex flex-col space-y-2 mt-5'>
+                            <div className='w-full flex flex-col space-y-2 mt-5 h-screen overflow-x-hidden scrollbar'>
                                <a href="/hackathon/2"><DetailedHackathon /></a>
                                <a href="/hackathon/4"><DetailedHackathon /></a>
                                <a href="/hackathon/5"><DetailedHackathon /></a>
                                <a href="/hackathon/6"><DetailedHackathon /></a>
+                               <a href="/hackathon/7"><DetailedHackathon /></a>
                             </div>
                         </div>
                     </div>

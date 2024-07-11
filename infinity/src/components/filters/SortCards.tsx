@@ -21,7 +21,7 @@ const SortCardsComponents:React.FC<SortCardProps> = (props) => {
             <div className='flex flex-row border bg-white border-gray-400 py-2 space-x-4 px-3 rounded-sm'>
                {
                  props.buttons.map((button) => (
-                  <button key={button.text} className='text-blue-400 focus:text-blue-700  font-md' onClick={() => button.handleClick()}>
+                  <button key={button.text} className='text-blue-400  focus:underline focus:decoration-1 focus:text-blue-700 font-md' onClick={() => button.handleClick()}>
                     {button.text}
                   </button>
                 ))
