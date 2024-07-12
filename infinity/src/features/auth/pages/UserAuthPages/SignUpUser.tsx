@@ -3,6 +3,8 @@ import loginimage from '../../../../assets/images/theme.png'
 import Button from '@mui/joy/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {checkEmail, checkMobileNo, checkUsername} from '../../helper/Authenticator'
+import {RegisterUserApi, setLocalStorage, setCookies} from './../../api/userApi'
 
 const SignUpUser = () => {
   // we are going to check the vali username , email and the password
@@ -18,45 +20,6 @@ const SignUpUser = () => {
   const [isUsernameValid, setisUsernameValid]= useState(true);
   const [isLoading,setisLoading]= useState(false);
 
-  // here we are going to define the code to save the username and the password
-  const checkUsername= (username: string)=> {
-    const regex = /^\S{2,15}$/;
-    const result= regex.test(username);
-    if(!result){
-      setisUsernameValid(false)
-    }
-    return result;
-  }
-
-  const checkMobileNo= (mobileno: string)=>{
-    try{
-      const regex = /^[0-9]{10}$/;
-      const result= regex.test(mobileno);
-      if(!result){
-        setisMobileValid(false);
-      }
-      return result;
-    }
-    catch(err){
-      console.log("error while checking the email of the user")
-    }
-  }
-
-  // we are going to check is the email entered by the user is valid or not
-  const checkEmail= (email:string)=>{
-    try{
-      const regex = /^[^\s!#$%&'*+/=?^_`{|}~-]+(?:\.[^\s!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
-      const result= regex.test(email);
-      if(!result){
-        setisEmailValid(false)
-      }
-      return result;
-    }
-    catch(err){
-      console.log("error while checking the email of the user")
-    }
-  }
-
   const onChangeHandler= (event: React.ChangeEvent<HTMLInputElement> )=>{
     const {name,value}= event.target;
     if(name==="username"){
@@ -69,35 +32,59 @@ const SignUpUser = () => {
       setemail(value);
     }
   }
+
+  const checkFields = async()=>{
+    try{  
+        const usernameCheck= checkUsername(username);
+        setisUsernameValid(usernameCheck);
+        const mobileNoCheck= checkMobileNo(mobileno);
+        setisMobileValid(mobileNoCheck);
+        const emailCheck= checkEmail(email);
+        setisEmailValid(emailCheck);
+    }
+    catch(err){
+      console.error("Error while checking Fields");
+    }
+  }
+
   const submitForm= async(e: React.ChangeEvent<HTMLInputElement>)=>{
     e.preventDefault();
     setisLoading(true);
-    console.log(email);
-    console.log(mobileno);
-    console.log(username);
       // first checking the email, username and the mobileno
-      const emailVerify=checkEmail(email);
-      const mobilenoVerify= checkMobileNo(mobileno);
-      const usernameVerify = checkUsername(username);
-      console.log(emailVerify);
-      console.log(mobilenoVerify);
-      console.log(usernameVerify);
+      checkFields();
       // here the email check is always returing false
 
-      if( emailVerify && usernameVerify){
+      if( isEmailValid && isUsernameValid){
         // so all the fields entered by the user are correct and now we need to make the api call
         try{
-              const response= await fetch("http://localhost:3000/api/infinity/auth/user/register", {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({username: username,email: email, mobileNo: mobileno }),
-              });
-              const data = await response.json();
-              const serverMessage= data.message;
+              const data= await RegisterUserApi(username, email, mobileno);
               setisLoading(false);
-              console.log(serverMessage)
+              if (data == null){
+                toast.error("Server Error");
+              }
+              else{
+                // so we used to get the data from the Server
+                const status= data.status;
+                const message= data.message;
+                if(status == 401){
+                  toast.error("Invalid Credentials");
+                }
+                else if(status == 409){
+                  toast.error("User Already Exists");
+                }
+                else if(status == 410){
+                  toast.error("Internal Error");
+                }
+                else if( status== 500){
+                  toast.error("Server Error");
+                }
+                else if(status == 200){
+                    toast.info("Registered Successfully");
+                    const userToken= data.userToken;
+                    setLocalStorage({"username": username, "email": email, "mobileNo": mobileno})
+                    setCookies(userToken);
+                }
+              }
               if(response.status==200 && serverMessage=="User registered Successfully"){
                 toast.success('User Registered Successfully');
               }

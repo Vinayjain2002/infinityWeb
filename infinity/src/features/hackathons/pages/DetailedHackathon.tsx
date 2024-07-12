@@ -99,7 +99,7 @@ const DetailedHackathon = () => {
             <div className='w-full mt-1 py-2 rounded-md border flex flex-col'>
               <div className='text-xl ml-5 text-dark-blue font-bold'><p>Featured Oppertunity</p></div>
               <div className='flex ml-5 mt-2 flex-row space-x-3'>
-                {/* <Oppertunity /> */}
+                <Oppertunity />
                 <Oppertunity />
               </div>
             </div>

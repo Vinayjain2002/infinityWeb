@@ -8,13 +8,13 @@ const DetailedHackathon = () => {
         <div className='flex items-center justify-center px-1 bg-dark-blue'>
           <div className='whitespace-pre text-xs space-y-0 py-0 font-semibold text-white'>
             F<br />
-            E<br/>
-            A<br/>
+            E<br />
+            A<br />
             T<br />
-            U <br />
-            R <br />
-            E <br />
-            D <br />
+            U<br />
+            R<br />
+            E<br />
+            D<br />
           </div>
         </div>
         <div className='w-full mx-5 md:mx-0 bg-gray-50  px-3 py-4 border border-dark-blue border-t-0 border-b-0  border-l-5'>
@@ -22,7 +22,6 @@ const DetailedHackathon = () => {
           <div className='flex justify-between flex-row w-full space-x-3'>
             <div className='lg:w-3/5 md:w-4/5 flex flex-row'>
                 <div className='w-1/3 my-auto  rounded-lg bg-black overflow-hidden'><img src={image} alt="" className='object-cover w-full'/></div>
-
                 <div className='ml-7 md:w-2/4 lg:w-full'>
                     <p className='lg:text-xl xl:text-2xl md:text-lg text-gray-700 font-medium'>Google Ai Hackathon</p>
                     <p className='lg:text-sm xl:text-md text-xs font-normal font-gray-600'>A hackathon by the google</p>
