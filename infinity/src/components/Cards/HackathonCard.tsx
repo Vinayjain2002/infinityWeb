@@ -18,8 +18,8 @@ const HackathonCard:React.FC<HackathonCardProps> = (props) => {
     <div className='my-1 w-full md:mr-5'>
       <div className='p-5 flex rounded-md border bg-white'>
         <div className='max-h-24 my-auto  rounded-lg bg-black overflow-hidden'>
-          <img src={image} className='object-fit cover h-24' />  </div>
-
+          <img src={image} className='object-fit cover h-24' />  
+        </div>
         <div className='flex flex-col ml-5'>
           <div className=''>
             <p className='lg:text-lg xl:text-xl md:text-md font-medium'>{props.heading}</p>

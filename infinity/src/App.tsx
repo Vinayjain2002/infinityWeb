@@ -6,8 +6,8 @@ import { useEffect } from 'react';
 // we are gonna to define the Login Screens
 import LoginAsAdmin from  './features/auth/pages/AdminAuthPages/LoginAsAdmin.js'
 import RegisterAsAdmin from './features/auth/pages/AdminAuthPages/RegisterAsAdmin.js';
-import LoginUser from './features/auth/pages/UserAuthPages/LoginUser.js';
 import SignUpUser from './features/auth/pages/UserAuthPages/SignUpUser.js'
+import LoginUser from './features/auth/pages/UserAuthPages/LoginUser.tsx'
 import PasswordResetPage from './features/auth/pages/Password.js'
 
 import HomePage from './features/homeScreen/pages/HomePage.js';
@@ -83,6 +83,12 @@ const App = () => {
         <Route path="/user/login" element={<LoginUser />} />
         <Route path='/admin/login' element={<LoginAsAdmin />} />
         <Route path= '/admin/register' element={<RegisterAsAdmin />} />
+        
+        {/* we are gonna to define the routes of the basic pages */}
+        <Route path='/homeScreen' element= {<HomePage/>}/>
+        <Route path='/account' element={<Account />} />
+
+        {/* this route is left to be linked with the backened */}
         <Route path='/changePassword/:username/:token' element={<PasswordResetPage/>}/>
 
         {/* we are going to define the route to post the hackathon */}
@@ -104,9 +110,6 @@ const App = () => {
         <Route path='/project/update/:id' element={<UpdateProject />} />
         <Route path='/project/post' element={<PostProject />}/>
 
-        {/* we are gonna to define the routes of the basic pages */}
-        <Route path='/homeScreen' element= {<HomePage/>}/>
-        <Route path='/account' element={<Account />} />
 
         {/* these are the section of the details of teh website */}
         <Route path="/detail/about" element={<AboutScreen />} />

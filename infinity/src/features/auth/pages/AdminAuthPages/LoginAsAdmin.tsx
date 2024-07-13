@@ -1,56 +1,80 @@
 import React, { useState } from 'react'
 import loginimage from '../../../../assets/images/theme.png';
-const LoginAsAdmin = () => {
+import { ToastContainer, toast } from 'react-toastify';
+import { setLocalStorage, setCookies } from '../../api/storage.ts';
+import 'react-toastify/dist/ReactToastify.css';
+import { LoginAdminApiCall } from '../../api/adminApi';
+import Button from '@mui/joy/Button';
 
-  const [email, setemail]= useState("");
-  const [password,setpassword]= useState("");
+interface LoginAsAdminProps{
 
-  const submitForm= async(e)=>{
-    var emailField= document.getElementById("email")
-    var passwordField= document.getElementById("password")
-    e.preventDefault();
-    console.log(email);
-    console.log(password)
-      if( email!=undefined && password!= undefined){
-        // so the user used to add the value of the email and the password
-        try{
-          const response= await fetch("http://localhost:3000/api/infinity/auth/user/register", {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({email: email,password: password}),
-          });
-          console.log(response);
-          if(res.status==200){
-            alert("Admin Login Succesfully")
-          }
-          else{
-            alert("Some Error while logging the user")
+}
+
+const LoginAsAdmin: React.FC<LoginAsAdminProps> = () => {
+  const [email, setEmail]= useState("");
+  const [password,setPassword]= useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const emailtextField = document.getElementById('email');
+  const passwordtextField = document.getElementById('password');
+
+  const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    try {
+      setIsLoading(true);
+      if (email == '' || password == '') {
+        toast.error('Invalid Credentials');
+      } else {
+        // we are going to call the api function
+        event.preventDefault();
+        alert("Hello")
+        const data = await LoginAdminApiCall(email, password);
+        if (data === null) {
+          // some Error had occured while Login User
+          toast.error('Server Error');
+        } else {
+          const status = data.status;
+          const message = data.message;
+          if (status === 401) {
+            toast.error('Invalid Credentials');
+          } else if (status === 404) {
+            toast.info('Data Not Found');
+          }else if(status== 409){
+              toast.error("Not Approved Yet");
+          }else if (status === 500) {
+            alert("Error")
+            toast.error('Server Error');
+          } else if (status === 200) {
+            toast.success('Login');
+            const adminToken = data.adminToken;
+            // going to call the function to set the cookies and the local Storage
+            setCookies(adminToken);
           }
         }
-        catch(err){
-          console.log("eror while making the api call")
-        }
-        // we need to make all the fields empty and we also need navigate to the diffeent page
-        emailField.value="";
-        passwordField.value="";
-        setemail("");
-        setpassword("");     
       }
-      else{
-        alert("one or more fields are incorrect")
-      }
-  }
-  const onChangeHandler= (event)=>{
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+    }
+    setEmail('');
+    setPassword('');
+    if (emailtextField instanceof HTMLInputElement) {
+      emailtextField.value = '';
+    }
+    
+    if (passwordtextField instanceof HTMLInputElement) {
+      passwordtextField.value = '';
+    }
+  };
+           
+  const onChangeHandler= (event: React.ChangeEvent<HTMLInputElement>)=>{
     const {name,value}= event.target;
     if(name=="password"){
-      setPa
+      setPassword(value)
     }
     else if(name== "email"){
-      setemail(value);
+      setEmail(value);
     }
   }
+  
   return (
     <div className='flex h-screen flex-col md:flex-row'>
     <div className="md:w-1/2 bg-gray-50 w-full h-full flex flex-col justify-center items-center">
@@ -63,8 +87,12 @@ const LoginAsAdmin = () => {
           <input type="text" id="email" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="email" />
           <label htmlFor="password" className="text-gray-500 ld:text-md 2xl:text-lg text-md mt-4">Password:</label>
           <input type="password" id="password" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="password" />
-          <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">Login</button>
-          <p className="text-gray-500 text-md  mt-4">Don't have an account? <a href="/adminsignup" className="text-blue-500">Sign Up</a></p>
+          <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">
+              <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading} className='text-md xl:text-4xl'>
+                  Login
+              </Button>                
+            </button>
+          <p className="text-gray-500 text-md  mt-4">Don't have an account? <a href="/admin/register" className="text-blue-500">Sign Up</a></p>
         </form>
       </div>
     </div>

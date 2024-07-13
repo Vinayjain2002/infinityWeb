@@ -34,9 +34,9 @@ const NavBar = () => {
 
             {/* right hand side components of the navBar */}
            <div className=''>
-            <ul className='flex flex-row items-center'>
+            <ul className='flex flex-row md:space-x-2 space-x-5 items-center'>
                 <li>
-                    <a href="/hackathon/post" className="md:inline-flex hidden lg:py-3 md:py-1 py-1 lg:px-5 md:px-3 px-1 hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Host a Hackathon</a></li>
+                    <a href="/hackathon/post" className="xl:inline-flex hidden lg:py-3 md:py-1 py-1 lg:px-5 md:px-3 px-1 hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Host a Hackathon</a></li>
                 <li className='w-6 mt-5 mx-3'>
                     <a href="" className='mr-8 py-3' >
                         <img src={icon} alt="Search Icon" />
@@ -46,7 +46,7 @@ const NavBar = () => {
                     <a href="/user/login" className='lg:py-3 md:py-1 py-1 lg:px-5 md:px-3 px-1 hover:bg-blue-50 text-dark-blue lg:font-medium text-md  hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400'>Login</a>
                 </li>
                 <li>
-                    <a href="/user/signup" className='py-1 px-3 md:py-1 lg:py-3 bg-blue-500 rounded-sm text-white md:mx-3 text-sm font-semibold  hover:bg-blue-600 focus:outline-none'>Sign Up</a>
+                    <a href="/user/signup" className='py-1 px-3 md:py-1 lg:py-3 bg-blue-500 rounded-sm text-white md:mx-3 mx-2 text-sm font-semibold  hover:bg-blue-600 focus:outline-none'>Sign Up</a>
                 </li>
             </ul>
            </div>

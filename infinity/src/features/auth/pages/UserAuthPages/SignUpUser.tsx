@@ -4,7 +4,8 @@ import Button from '@mui/joy/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {checkEmail, checkMobileNo, checkUsername} from '../../helper/Authenticator'
-import {RegisterUserApi, setLocalStorage, setCookies} from './../../api/userApi'
+import {RegisterUserApi} from './../../api/userApi'
+import { setLocalStorage, setCookies } from '../../api/storage';
 
 const SignUpUser = () => {
   // we are going to check the vali username , email and the password
@@ -37,9 +38,9 @@ const SignUpUser = () => {
     try{  
         const usernameCheck= checkUsername(username);
         setisUsernameValid(usernameCheck);
-        const mobileNoCheck= checkMobileNo(mobileno);
+        const mobileNoCheck= !!checkMobileNo(mobileno);
         setisMobileValid(mobileNoCheck);
-        const emailCheck= checkEmail(email);
+        const emailCheck= !!checkEmail(email);
         setisEmailValid(emailCheck);
     }
     catch(err){
@@ -53,10 +54,12 @@ const SignUpUser = () => {
       // first checking the email, username and the mobileno
       checkFields();
       // here the email check is always returing false
-
       if( isEmailValid && isUsernameValid){
         // so all the fields entered by the user are correct and now we need to make the api call
         try{
+              alert(username);
+              alert(mobileno);
+              alert(email);
               const data= await RegisterUserApi(username, email, mobileno);
               setisLoading(false);
               if (data == null){
@@ -83,35 +86,25 @@ const SignUpUser = () => {
                     const userToken= data.userToken;
                     setLocalStorage({"username": username, "email": email, "mobileNo": mobileno})
                     setCookies(userToken);
+                    // so we used to define the logic for the storing the data
+
                 }
               }
-              if(response.status==200 && serverMessage=="User registered Successfully"){
-                toast.success('User Registered Successfully');
-              }
-              else if(response.status==404 && serverMessage=="Provide the email and username"){
-                toast.error("Provide email and username");
-              }
-              else if(response.status==409 && serverMessage=="Email already exists"){
-                toast.info("Email is already registered!")
-              }
-              else if(response.status==422 && serverMessage=="Unable to verify Email"){
-                toast.error("Error while verifying Email");
-              }
-              else if(response.status==500){
-                toast.error("Internal Server Error")
-              }
-              else{
-                console.log("Error while registering the user")
-              }
-        }
+            }
         catch(err){
           setisLoading(false)
           console.log("eror while making the api call")
         }
         // we need to make all the fields empty and we also need navigate to the diffeent page
-        usernameField.value="";
-        mobilenoField.value="";
-        emailField.value="";
+        if(usernameField instanceof HTMLInputElement){
+          usernameField.value= "";
+        }
+        if(mobilenoField instanceof HTMLInputElement){
+          mobilenoField.value= "";
+        }
+        if(emailField instanceof HTMLInputElement){
+          emailField.value= "";
+        }
         setemail("");
         setmobileno("");
         setusername("");
@@ -142,13 +135,13 @@ const SignUpUser = () => {
                 <label htmlFor="mobileno" className="text-gray-500 lg:text-md 2xl:text-lg text-md mt-4">Mobile No:</label>
                 <input type="tel" id="mobileno" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="mobileno" required/>
                 {/* {/* <p className="text-sm text-red-400 mt-1">Invalid mobileNo</p>       */}
-                          <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none"> 
+                  <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none"> 
                     <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading} className='text-md xl:text-4xl'>
                           Login
                     </Button>                
                  </button> 
                   <div className='flex'>
-                      <p className="text-gray-500 text-md  mt-4">Already have an account? <a href="/login" className="text-blue-500">Login</a></p>
+                      <p className="text-gray-500 text-md  mt-4">Already have an account? <a href="login" className="text-blue-500">Login</a></p>
                   </div>       
               </form>
           </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import image from '../../assets/images/hackathon.png'
+
 interface FestCardProps{
     imageUrl: string,
     festName: string,

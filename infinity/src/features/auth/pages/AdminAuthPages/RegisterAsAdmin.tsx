@@ -2,89 +2,114 @@ import React, { useState } from 'react'
 import Select from 'react-select'
 import loginimage from '../../../../assets/images/theme.png'
 import { ToastContainer, toast } from 'react-toastify';
+import { checkMobileNo, checkEmail } from '../../helper/Authenticator';
+import { RegisterAdminApiCall } from '../../api/adminApi';
+import Button from '@mui/joy/Button';
+
+// need to define some more fields for the proper Functioning
 
 const RegisterAsAdmin = () => {
-    const [email, setemail]= useState("");
-  const [isLoading, setisLoading]= useState("");
+  const [email, setemail]= useState("");
   const [mobileno, setmobieno]=useState("");
   const [name,setname]= useState("");
-  const [selectedOption, setselectedOption]= useState([]);
+  const [isLoading, setisLoading]= useState(false);
+  const [accessAppliedFor, setAccessAppliedFor]= useState([]);
 
-  const checkMobileNo= (mobileno)=>{
-    try{
-      const regex = /^\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4}$/;
-      return regex.test(mobileno)
+  const [isMobileValid,setisMobileValid]= useState(true);
+  const [isEmailValid, setisEmailValid]= useState(true)
+
+  const emailTextField= document.getElementById('email');
+  const mobilenoTextField= document.getElementById('mobileno')
+  const nameTextField= document.getElementById('name')
+
+  const checkFields = async()=>{
+    try{  
+        const mobileNoCheck= !!checkMobileNo(mobileno);
+        setisMobileValid(mobileNoCheck);
+        const emailCheck= !!checkEmail(email);
+        setisEmailValid(emailCheck);
     }
     catch(err){
-      console.log("error while checking the email of the user")
+      console.error("Error while checking Fields");
     }
   }
 
-  // we are going to check is the email entered by the user is valid or not
-  const checkEmail= (email)=>{
-    try{
-      const regex = /^[^\s!#$%&'*+/=?^_`{|}~-]+(?:\.[^\s!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
-      return regex.test(email);
+  const onChangeHandler= (event: React.ChangeEvent<HTMLInputElement> )=>{
+    const {name,value}= event.target;
+    if(name==="name"){
+      setname(value);
     }
-    catch(err){
-      console.log("error while checking the email of the user")
+    else if(name==='email'){
+      setemail(value);
+    }
+    else if(name== "mobileno"){
+      setmobieno(value);
     }
   }
 
-
-  const submitForm= async(e)=>{
-    var emailField= document.getElementById("email");
-    var nameField= document.getElementById("name");
-    var mobilenoField= document.getElementById("mobileno");
-
+  const submitForm= async(e: React.ChangeEvent<HTMLInputElement>)=>{
     e.preventDefault();
-    console.log(email);
-    console.log(name);
-    console.log(mobileno);
-    const checkemail= checkEmail(email);
-    const checkmobile= checkMobileNo(mobileno);
-      if( checkemail && checkmobile){
-        // so the user used to add the correct values of the email and the mobile no
+    setisLoading(true);
+      checkFields();
+      // here the email check is always returing false
+      if( isEmailValid && isMobileValid){
+        // so all the fields entered by the user are correct and now we need to make the api call
         try{
-          const response= await fetch("http://localhost:3000/api/infinity/auth/user/register", {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({adminemail: email,adminname: name, adminmobileno: mobileno,accessAppliedFor: selectedOption }),
-          });
-          console.log(response);
-          if(res.status==200){
-            alert("Admin Login Succesfully")
-          }
-          else{
-            alert("Some Error while logging the user")
-          }
-        }
+              const data= await RegisterAdminApiCall(name,email, mobileno, accessAppliedFor);
+              if (data == null){
+                toast.error("Server Error");
+              }
+              else{
+                // so we used to get the data from the Server
+                const status= data.status;
+                const message= data.message;
+                if(status == 401){
+                  toast.error("Invalid Credentials");
+                }
+                else if(status == 409){
+                  toast.error("Admin Already Exists");
+                }
+                else if(status == 405){
+                  toast.error("Already Applied");
+                }
+                else if(status== 422){
+                  toast.error("Internal Error");
+                }
+                else if( status== 500){
+                  toast.error("Server Error");
+                }
+                else if(status == 200){
+                    toast.info("Registered Successfully");
+                    // so we used to define the logic for the storing the data
+                }
+              }
+              setisLoading(false);
+            }
         catch(err){
+          setisLoading(false);
           console.log("eror while making the api call")
         }
         // we need to make all the fields empty and we also need navigate to the diffeent page
-        emailField.value="";
-        nameField.value="";
-        mobilenoField.value="";
+        if(nameTextField instanceof HTMLInputElement){
+          nameTextField.value= "";
+        }
+        if(mobilenoTextField instanceof HTMLInputElement){
+          mobilenoTextField.value= "";
+        }
+        if(emailTextField instanceof HTMLInputElement){
+          emailTextField.value= "";
+        }
+        setAccessAppliedFor([]);
+        setemail("");
+        setmobieno("");
+        setname("");
       }
       else{
-        alert("one or more fields are incorrect")
+        setisLoading(false);
       }
   }
-  const onChangeHandler= (event)=>{
-    const {name,value}= event.target;
-    if(name=="name"){
-      setname(value)
-    }
-    else if(name== "email"){
-      setemail(value);
-    }
-    else if(name=='mobileno'){
-      setmobieno(value)
-    }
-  }
+
+
    // here we are going to define the code of the options from where the user could select the data
    const options= [
     {value: 'announcement', label: 'Announcements'},
@@ -114,9 +139,13 @@ const RegisterAsAdmin = () => {
 
           {/* going to define the code for selecting the fields  */}
           <label htmlFor="accessOption" className='text-gray-500 ld:text-md 2xl:text-lg text-md mt-4'>What you want to manage:</label>
-          <Select id="accessOption" className='w-full mt-1' options={options} isMulti value={selectedOption} onChange={setselectedOption}/>
-          <button type="submit" className="bg-blue-500 text-white w-full font-semibold rounded-md px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">Register</button>
-          <p className="text-gray-500 text-md  mt-4">Already Registered <a href="/adminsignup" className="text-blue-500">Login</a></p>
+          <Select id="accessOption" className='w-full mt-1' options={options} isMulti value={accessAppliedFor} onChange={setAccessAppliedFor}/>
+          <button type="submit" className="bg-blue-500 text-white w-full font-semibold rounded-md px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">
+                    <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading} className='text-md xl:text-4xl'>
+                          Register
+                    </Button>                
+                 </button>
+          <p className="text-gray-500 text-md  mt-4">Already Registered <a href="/admin/login" className="text-blue-500">Login</a></p>
         </form>
       </div>
     </div>

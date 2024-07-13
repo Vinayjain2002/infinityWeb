@@ -4,7 +4,8 @@ import loginimage from '../../../../assets/images/theme.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'firebase/auth';
-import { LoginUserApi, setCookies, setLocalStorage } from '../../api/userApi.ts';
+import { LoginUserApi } from '../../api/userApi.ts';
+import { setLocalStorage, setCookies } from '../../api/storage.ts';
 import { loginWithGoogleFunc } from '../../api/firebase.ts';
 
 interface LoginUserProps {
@@ -28,10 +29,10 @@ const LoginUser: React.FC<LoginUserProps> = () => {
 
   // going to make the calls to the api we have build
   const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
     try {
       if (username === '' || password === '') {
         toast.error('Invalid Credentials');
-        setIsLoading(false);
       } else {
         // we are going to call the api function
         event.preventDefault();
@@ -39,7 +40,6 @@ const LoginUser: React.FC<LoginUserProps> = () => {
         if (data === null) {
           // some Error had occured while Login User
           toast.error('Server Error');
-          setIsLoading(false);
         } else {
           const status = data.status;
           const message = data.message;
@@ -61,8 +61,10 @@ const LoginUser: React.FC<LoginUserProps> = () => {
           }
         }
       }
+      setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
+      console.error(err);
     }
     setUsername('');
     setPassword('');
@@ -115,8 +117,8 @@ const LoginUser: React.FC<LoginUserProps> = () => {
               </a>
             </div>
             {/* <Addvertisement /> */}
-            <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">
-                    <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading} className='text-md xl:text-4xl' onClick={LoginUserApi}>
+                <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">
+                    <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading} className='text-md xl:text-4xl'>
                           Login
                     </Button>                
                  </button>
@@ -126,7 +128,7 @@ const LoginUser: React.FC<LoginUserProps> = () => {
                     Login With Google
                 </button>
                 <div className='flex'>
-                <p className="text-gray-500 text-md  mt-4">Don't have an account? <a href="/signup" className="text-blue-500">Sign up</a></p>
+                <p className="text-gray-500 text-md  mt-4">Don't have an account? <a href="signup" className="text-blue-500">Sign up</a></p>
 
                 </div>
             </div>
@@ -139,3 +141,5 @@ const LoginUser: React.FC<LoginUserProps> = () => {
 
   );
 }
+
+export default LoginUser;
