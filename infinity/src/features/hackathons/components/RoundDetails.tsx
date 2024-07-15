@@ -15,10 +15,10 @@ const RoundDetails:React.FC<RoundProps> = (props) => {
                         <div className='text-md lg:text-lg 2xl:text-xl text-gray-800 font-semibold'><a href="/hackathon/detail/2">{props.roundName}</a></div>
                 </div>
 
-                <div className='mt-2'>
-                      <p className='text-xs lg:text-md text-gray-500'>{props.roundDetails}</p>
+                <div className=''>
+                      <p className='text-sm lg:text-md 2xl:text-lg text-gray-800'>{props.roundDetails}</p>
                 </div>
-                <div className='flex flex-row mt-2 space-x-5'>
+                <div className='flex flex-row mt-1 space-x-5'>
                     <div className='flex flex-col'>
                         <p className='text-sm text-gray-700 font-semibold '>Start Date</p>
                         <p className='text-sm text-gray-500'>{props.startDate}</p>

@@ -13,7 +13,6 @@ interface ImageSliderProps {
 const ImageSlider: React.FC<ImageSliderProps> = ({ images, autoplay = false, interval = 3000 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAutoplayActive, setAutoplayActive] = useState(autoplay); // Use clearer name
-  const img=[banner2,banner1, banner3, banner4];
   useEffect(() => {
     if (isAutoplayActive) {
       const intervalId = setInterval(() => {
@@ -46,7 +45,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images, autoplay = false, int
               {images.map((image, index) => (
                 <img
                   key={index}
-                  src={img[index]}
+                  src={images[index]}
                   alt={`Image ${index + 1}`}
                   className={`absolute inset-0 object-cover h-full w-full ${
                     index === currentImageIndex ? 'opacity-100 z-10' : 'hidden'
