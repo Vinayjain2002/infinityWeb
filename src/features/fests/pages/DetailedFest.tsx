@@ -1,0 +1,303 @@
+import React, { useEffect, useState } from "react";
+import Footer from "../../../components/navBars/Footer";
+import NavBar from "../../../components/navBars/NavBar";
+import ChatAssistant from "../../../components/chatAssistant/ChatAssistant";
+import ImageSlider from "../../../components/ImageSlider/ImageSlider";
+import banner from "../../../assets/images/banner.jpg";
+import Tags from "../../hackathons/components/component/Tags";
+import EventWidget from "../../hackathons/components/component/EventWidget";
+import PrizesComponent from "../../hackathons/components/component/PrizesComponent";
+import Oppertunity from "../../hackathons/components/component/Oppertunity";
+import RoundDetails from "../../hackathons/components/component/RoundDetails";
+import FestRounds from "../components/FestRounds";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Banner1 from "../../../assets/images/banner3.jpeg";
+import Banner2 from "../../../assets/images/banner4.jpeg";
+import Banner3 from "../../../assets/images/banner5.png";
+import Banner4 from "../../../assets/images/banners1.jpg";
+import { DetailedFestInfo } from "../components/info/DetailedFestInfo";
+import { DetailedFestSidebar } from "../components/component/DetailedFestSideBar";
+interface FestData {
+  id: string;
+  image: string;
+  postedBy: string;
+  eventname: string;
+  mode: string;
+  dateofPosted: Date;
+  lastDateToApply: Date;
+  entryFee: number;
+  totalSeats: number;
+  description: string;
+  hasTags: string[];
+  queryContacts: string[];
+  organiser: string[];
+  eventsDetail: {}[];
+  registerationUrl: string;
+  city: string;
+  venue: string;
+  chiefGuests: string[];
+  dressCode: string;
+  perks: string[];
+  organisedUnder: string[];
+}
+
+const DetailedFest: React.FC = (fest) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { id: festId } = useParams();
+  const [RaiseOpinion, setRaiseOpinion] = useState(false);
+  const [discussion, setDiscussion] = useState(false);
+  const [festData, setFestData] = useState<FestData>({});
+
+  useEffect(() => {
+    try {
+      setFestData(location.state.festData);
+    } catch (err) {
+      console.error(err);
+    }
+  }, [location.state]);
+
+  const handleDiscussion = () => {
+    // here we are going to toggle the value of the raiseConcern
+    setDiscussion((prevState) => !prevState);
+  };
+  const handleOpinion = () => {
+    setRaiseOpinion((prevState) => !prevState);
+  };
+  return (
+    <div className="bg-blue-50">
+      <ChatAssistant />
+      {/* here we are going to define teh code of the detailed Hacakathon */}
+      <NavBar />
+      <div>
+        <div className="w-full">
+          <ImageSlider
+            images={[Banner1, Banner2, Banner3, Banner4]}
+            autoplay={true}
+            interval={3000}
+          />
+        </div>
+        <div className=" mx-5 mt-5 flex flex-row space-x-2">
+          <div className="lg:w-2/3 w-full h-[90vh] overflow-y-scroll scrollbar">
+            <DetailedFestInfo
+              id={festData.id}
+              image={festData.image}
+              eventname={festData.eventname}
+              mode={festData.mode}
+              dateofPosted={festData.dateofPosted}
+              lastDateToApply={festData.lastDateToApply}
+              entryFee={festData.entryFee}
+              totalSeats={festData.totalSeats}
+              description={festData.description}
+              hasTags={festData.hasTags}
+              queryContacts={festData.queryContacts}
+              organiser={festData.organiser}
+              eventsDetail={festData.eventsDetail}
+              registerationUrl={festData.registerationUrl}
+              city={festData.city}
+              venue={festData.venue}
+              chiefGuests={festData.chiefGuests}
+              dressCode={festData.dressCode}
+              perks={festData.perks}
+              organisedUnder={festData.organisedUnder}
+              postedBy={festData.postedBy}
+            />
+
+            {/* We are going to define the Sections of the Prizes and the other things */}
+            <div className="w-full border py-2 px-2">
+              <div className="flex flex-row mt-1 space-x-3 w-full">
+                <PrizesComponent />
+                <PrizesComponent />
+                <PrizesComponent />
+              </div>
+            </div>
+            {/* we are going to define the featured Oppertunity Section */}
+            <div className="w-full mt-1 py-3 rounded-md bg-white border flex flex-col">
+              <div className="text-xl ml-5 text-dark-blue font-bold">
+                <p>Featured Oppertunity</p>
+              </div>
+              <div className="md:w-4/5   w-full px-10 pt-1 flex-row space-y-2 ">
+                <a
+                  href=""
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFestData(festData);
+                  }}
+                >
+                  <Oppertunity
+                    name={festData.eventname}
+                    description={festData.description}
+                    mode={festData.mode}
+                    prizes=""
+                  />
+                </a>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFestData(festData);
+                  }}
+                >
+                  <Oppertunity
+                    name={festData.eventname}
+                    description={festData.description}
+                    mode={festData.mode}
+                    prizes=""
+                  />
+                </a>
+              </div>
+            </div>
+
+            {/* we are going to define the code of the Related Oppertuntity */}
+            <div className="flex py-2 flex-col bg-white w-full mt-1 py-3 rounded-md border">
+              <div className="text-xl ml-5 text-dark-blue font-bold">
+                <p>Related Oppertunity</p>
+              </div>
+              <div className=" space-y-2 md:w-4/5 px-10 pt-1 flex-row">
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFestData(festData);
+                  }}
+                >
+                  <Oppertunity
+                    name={festData.eventname}
+                    description={festData.description}
+                    mode={festData.mode}
+                    prizes=""
+                  />
+                </a>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFestData(festData);
+                  }}
+                >
+                  <Oppertunity
+                    name={festData.eventname}
+                    description={festData.description}
+                    mode={festData.mode}
+                    prizes=""
+                  />
+                </a>
+              </div>
+            </div>
+
+            {/* raise the complaint */}
+            <div className=" rounded-md bg-white text-center my-1 border p-4">
+              <div className="lg:text-md md:text-sm text-xs text-gray-700">
+                <p>
+                  *This opportunity has been listed by SNS College of Technology
+                  (SNSCT), Coimbatore, Tamil Nadu. Unstop is not liable for any
+                  content mentioned in this opportunity or the process followed
+                  by the organizers for this opportunity. However, please raise
+                  a complaint if you want Unstop to look into the matter.
+                </p>
+              </div>
+              <div className="mt-2">
+                <button className=" mt-2 rounded-md px-3 py-2 bg-blue-400 hover:bg-blue-500 hover:text-white md:text-md text-sm">
+                  Raise a Complaint
+                </button>
+              </div>
+            </div>
+
+            {/* raise Some DOUBTS */}
+            <div className="rounded-md my-1 bg-white border py-3 px-5">
+              <div className="text-dark-blue font-bold lg:text-xl md:text-lg sm:text-md text-sm">
+                Voice your opinion by leaving a feedback & your rating
+              </div>
+              <div className="w-full h-32 mt-3 border-dark-blue ">
+                <textarea
+                  placeholder="Write a feedback"
+                  className=" px-5 py-2 w-full h-full resize-none focus:border-dark-blue border border-dark-blue focus:outline-none rounded-md text-sm"
+                ></textarea>
+              </div>
+
+              <div className="w-full mt-2 flex justify-end">
+                <button className="px-5 py-2 border bg-blue-400 hover:text-white hover:bg-blue-500 rounded-md">
+                  Raise
+                </button>
+              </div>
+            </div>
+
+            {/* we are going to define the section of the chatting with the others */}
+            <div className="rounded-md bg-white my-1 border py-3 px-5">
+              <div className="text-dark-blue font-bold  text-sm sm:text-md md:text-lg lg:text-xl">
+                <p>Discussions</p>
+              </div>
+              <div className=" my-2">
+                <input
+                  type="text"
+                  placeholder="Enter the Message"
+                  className="border w-full border-dark-blue focus:border-dark-blue focus:outline-none p-2 rounded-md text-sm"
+                />
+              </div>
+              <div className="w-full mt-2 flex justify-end">
+                <button className="px-5 py-2 border bg-blue-400 hover:bg-blue-500 hover:text-white rounded-md">
+                  Send
+                </button>
+              </div>
+
+              {/* here we are going t show up the messages at the real time */}
+            </div>
+          </div>
+
+          {/* this is the Second part of the webpage */}
+          <div className=" lg:block hidden w-1/3">
+            <DetailedFestSidebar
+              entryFee={festData.entryFee}
+              registerationUrl={festData.registerationUrl}
+              level=""
+              prizes=""
+              mode={festData.mode}
+            />
+
+            {/* we are going to define the Section of the Eligiblity */}
+            {/* <div className="mt-2 border bg-white rounded-md py-3 px-5">
+              <div className="text-lg py-1  text-gray-800 font-bold">
+                Eligiblity Criteria:{" "}
+              </div>
+              <hr />
+              <div>
+                <ul className="mt-2 text-sm">
+                  {festData?.condition?.map((condition, index) => (
+                    <li
+                      key={index}
+                      className="flex items-baseline space-x-2 pl-5"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-gray-500"></div>
+                      <p>{condition}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div> */}
+            {/* we are gonna to define the tech stack Req */}
+            {/* <div className="mt-2 bg-white border rounded-md py-3 px-5">
+              <div className="text-lg py-1 text-gray-800 font-bold">
+                TechStack Required:{" "}
+              </div>
+              <hr />
+              <div>
+                <ul className="mt-2 text-sm">
+                  {festData?.techStackRequired?.map((tech, index) => (
+                    <li
+                      key={index}
+                      className="flex items-baseline space-x-2 pl-5"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-gray-500"></div>
+                      <p>{tech}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div> */}
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default DetailedFest;
