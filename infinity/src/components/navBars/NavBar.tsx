@@ -13,28 +13,28 @@ const NavBar = () => {
                 </a>
             </div>
             <div className=''>
-                <ul className=' flex-row hidden lg:flex '>
+                <ul className=' flex-row hidden md:flex md:space-x-1 lg:space-x-1 xl:space-0 '>
                     <li>
-                        <a href="/hackathon" className="py-3 px-5 hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">
+                        <a href="/hackathon" className="py-3 px-5 hover:bg-blue-50 text-dark-blue block font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">
                             Hackathons
                         </a>
                     </li>
                     <li>
-                        <a href="/fest" className="py-3 px-4  hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Fests</a></li>
+                        <a href="/fest" className="py-3 px-4  hover:bg-blue-50 text-dark-blue block font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Fests</a></li>
                     <li>
-                        <a href="/blog" className="py-3 px-4  hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Blogs</a></li>
+                        <a href="/blog" className="py-3 px-4  hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 hidden lg:block focus:text-blue-500 focus:underline-blue-400">Blogs</a></li>
                     <li>
-                        <a href="/project" className=" py-3 px-4  hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Projects</a></li>
+                        <a href="/project" className=" py-3 px-4  hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 hidden lg:block focus:text-blue-500 focus:underline-blue-400">Projects</a></li>
                     <li>
-                        <a href="/video" className=" py-3 px-4  hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Videos</a></li>
+                        <a href="/video" className=" py-3 px-4  hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 hidden lg:block focus:text-blue-500 focus:underline-blue-400">Videos</a></li>
                         <li>
-                        <a href="/bootcamp" className=" py-3 px-4  hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Bootcamps</a></li>
+                        <a href="/bootcamp" className=" py-3 px-4  hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 block focus:text-blue-500 focus:underline-blue-400">Bootcamps</a></li>
                 </ul>
             </div>
 
             {/* right hand side components of the navBar */}
            <div className=''>
-            <ul className='flex flex-row md:space-x-2 space-x-5 items-center'>
+            <ul className='flex flex-row md:space-x-2 space-x-5  items-center'>
                 <li>
                     <a href="/hackathon/post" className="xl:inline-flex hidden lg:py-3 md:py-1 py-1 lg:px-5 md:px-3 px-1 hover:bg-blue-50 text-dark-blue font-medium hover:text-blue-500 focus:text-blue-500 focus:underline-blue-400">Host a Hackathon</a></li>
                 <li className='w-6 mt-5 mx-3'>

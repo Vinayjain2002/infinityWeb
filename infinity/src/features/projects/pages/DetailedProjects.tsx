@@ -8,11 +8,14 @@ import ProjectDetails from '../components/ProjectDetails.tsx';
 import DetailedProjectImage from '../components/DetailedProjectImage.tsx';
 import DetailedProjectVideo from '../components/DetailedProjectVideo.tsx'
 import ProjectNavBar from '../components/ProjectNavBar.tsx';
+import ChatAssistant from '../../../components/chatAssistant/ChatAssistant.tsx';
+
 const DetailedProjects = () => {
   return (
     <div>
-    <div className='relative'>
+    <div>
       <NavBar />
+      <ChatAssistant />
       <div>
       </div>
           <ProjectNavBar />

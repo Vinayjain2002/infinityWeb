@@ -1,25 +1,28 @@
-import React from 'react'
-import BlogPageSideBarLine from './BlogPageSideBarLine.tsx'
+import React from "react";
+import BlogPageSideBarLine from "./BlogPageSideBarLine";
 
-const BlogPageSideBar = () => {
+const SimilarTopics = () => {
+  const relatedTopics = ["ncdjnc", "nekwlf", "nfjn"];
+
   return (
-    <div className='w-full'>
-      <div className='col bg-blue-300 rounded-lg'>
-              <div className='px-2 py-4'>
-                <div className='text-lg font-semibold xl:text-2xl lg:text-xl'>Similar Topics</div>
-                <ul className='my-4 flex-col'>
-                  <li className='my-4'><BlogPageSideBarLine /></li>
-                  <li className='my-4'><BlogPageSideBarLine /></li>
-                  <li className='my-4'><BlogPageSideBarLine /></li>
-                  <li className='my-4'><BlogPageSideBarLine /></li>
-                  <li className='my-4'><BlogPageSideBarLine /></li>
-                  <li className='my-4'><BlogPageSideBarLine /></li>
-                </ul>
-              </div>
-            </div>
-
+    <div className="w-full">
+      <div className="col bg-blue-300 rounded-lg">
+        <div className="pl-3 py-2">
+          <div className="text-md font-medium lg:text-xl md:text-lg">
+            Similar Topics
+          </div>
+          <ul className="my-1 flex flex-col">
+            {relatedTopics &&
+              relatedTopics.map((relatedTopic, index) => (
+                <li key={index}>
+                  <BlogPageSideBarLine heading={relatedTopic} />
+                </li>
+              ))}
+          </ul>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default BlogPageSideBar
+export default SimilarTopics;

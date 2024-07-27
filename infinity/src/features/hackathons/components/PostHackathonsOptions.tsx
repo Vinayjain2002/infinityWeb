@@ -1,5 +1,5 @@
 import React from 'react'
-import PostHackthonOptionsCard from './PostHackthonOptionCard'
+import PostHackthonOptionsCard from './HackathonCards/PostHackthonOptionCard'
 
 const PostHackathonsOptions = () => {
   return (

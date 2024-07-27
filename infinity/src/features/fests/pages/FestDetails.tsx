@@ -1,122 +1,132 @@
-import React from 'react'
-import ChatAssistant from '../../../components/chatAssistant/ChatAssistant'
-import ImageSlider from '../../../components/ImageSlider/ImageSlider'
-import NavBar from '../../../components/navBars/NavBar'
-import FestCard from '../../../components/Cards/FestCard'
-import FestImage from '../../../assets/images/hackathon.png'
-import Tags from '../../hackathons/components/Tags'
-import EventWidget from '../../hackathons/components/EventWidget'
-import EventsDescription from '../../hackathons/components/EventsDescription'
-import EventsDescriptionList from '../../hackathons/components/EventsDescriptionList'
-import QuickQuestion from '../../hackathons/components/QuickQuestion'
-import Footer from '../../../components/navBars/Footer'
+import React, { useState, useEffect } from 'react';
+import ChatAssistant from '../../../components/chatAssistant/ChatAssistant';
+import ImageSlider from '../../../components/ImageSlider/ImageSlider';
+import NavBar from '../../../components/navBars/NavBar';
+import FestCard from '../../../components/Cards/FestCard';
+import FestImage from '../../../assets/images/hackathon.png';
+import Tags from '../../hackathons/components/component/Tags';
+import EventWidget from '../../hackathons/components/component/EventWidget';
+import EventsDescription from '../../hackathons/components/component/EventsDescription';
+import EventsDescriptionList from '../../hackathons/components/component/EventsDescriptionList';
+import QuickQuestion from '../../hackathons/components/component/QuickQuestion';
+import Footer from '../../../components/navBars/Footer';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import Banner1 from '../../../assets/images/banner.jpg';
+import Banner3 from '../../../assets/images/banner3.jpeg';
+import Banner2 from '../../../assets/images/banner4.jpeg';
+import Banner4 from '../../../assets/images/banner5.png';
+import FestRounds from '../components/FestRounds';
+import { DetailsOfFest } from '../components/detailsOfFest';
+import { festDetails } from '../data/data';
 
-const FestDetails = () => {
-    const fests= [{},{},{},{},{}];
+interface FestData {
+  id: string;
+  image: string;
+  postedBy: string;
+  eventname: string;
+  mode: string;
+  dateofPosted: Date;
+  lastDateToApply: Date;
+  entryFee: number;
+  totalSeats: number;
+  description: string;
+  hasTags: string[];
+  queryContacts: string[];
+  organiser: string[];
+  eventsDetail: {[index: string]: string}[];
+  registerationUrl: string;
+  city: string;
+  venue: string;
+  chiefGuests: string[];
+  dressCode: string;
+  perks: string[];
+  organisedUnder: string[];
+}
+
+const FestDetails: React.FC = () => {
+  const location = useLocation();
+  const [festData, setFestData] = useState<FestData | null>(null);
+  const [festDetail, setFestDetail] = useState<FestData |null>(null);
+
+  useEffect(() => {
+    if (location.state && location.state.festData) {
+      try {
+        console.log("Hackathon Data is going", location.state.festData);
+        setFestData(location.state.festData);
+        console.log("set State hook", festData);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    else{
+      setFestData(festDetails)
+    }
+    if (location.state && location.state.fest) {
+      try {
+        console.log("Fest data is", location.state.fest);
+        setFestDetail(location.state.fest);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    else{
+      const params= useParams();
+      const id=params.id;
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    // You can add some code here if you want to perform some action when festData changes
+  }, [festData]);
+
   return (
     <div>
       <div>
-          <ChatAssistant />
-            <NavBar />
-            <div className='w-full h-50'>
-                <ImageSlider images={['njjb', 'fer0.','cergre']} autoplay={true} interval={3000}/>
-            </div>
-            {/* we are going to define the split Screeen Hackathons */}
-            <div className='bg-blue-50'>
-            <div className='mx-2 flex flex-row'>
-              <div className='w-2/5  mt-2 hidden md:flex flex-col'>
+        <ChatAssistant />
+        <NavBar />
+        <div className='w-full h-50'>
+          <ImageSlider images={[Banner1, Banner2, Banner3, Banner4]} autoplay={true} interval={3000} />
+        </div>
+        {/* we are going to define the split Screeen Hackathons */}
+        <div className='bg-blue-50'>
+          <div className='mx-2 flex flex-row'>
+            <div className='w-2/5 h-[120vh] overflow-y-scroll scrollbar mt-3 space-y-2 hidden lg:flex flex-col'>
               {
-                 fests.map((fest)=>(
-                  <a href="/hackathon/2"><FestCard  imageUrl= ""  festName= "Konark" description= "A fest by the I connect team" daysLeft= "7days" entryFee= "1000" location="Hisar" tags= {["#Brain Storm", "#Coding", "#Tech Fest"]} /></a>
+                festData!=undefined && (festData)?.map((fest, index) => (
+                  <div key={index}>
+                    <a onClick={(e) => {
+                      e.preventDefault();
+                      setFestDetail(fest);
+                    }}>
+                      <FestCard id={fest.id} 
+                        image={fest.image} 
+                        eventname={fest.eventname} 
+                        mode={fest.mode} 
+                        lastDateToApply={fest.lastDateToApply} 
+                        entryFee={fest.entryFee} 
+                        description={fest.description}
+                        hasTags={fest.hasTags}
+                        city={fest.city} 
+                      /></a>
+                  </div>
                 ))
               }
-              </div>
-              <div className='md:w-3/5 w-full mt-2 md:ml-3 ml-0'>
-                 <div className='w-full mt-1 bg-white h-auto flex-col border rounded-md'>
-                    <div className='w-full px-5 py-5 flex'>
-                      <div className='w-1/5 bg-black rounded-md overflow-hidden max-h-25'><img src={FestImage} className='h-25'/></div>
-                      <div className='w-4/5 flex flex-col ml-3'>
-                            <p className='text-lg md:text-xl xl:text-2xl font-bold '><a href="/hackathon/detail/2">Konark TechFest</a></p>
-                            <p className='text-xs md:text-sm mt-2 text-blue-500 font-semibold'><a href="https://www.gjust.ac.in/">Guru Jambheshwar University, Hisar</a></p>
-                            <div className='flex flex-row space-x-5 text-sm mt-2'>
-                              <p className='text-sm md:text-md font-gray-50 font-semibold'>Offline</p>
-                              <p className='text-sm md:text-md font-gray-50 font-semibold'>Hisar</p>
-                            </div>
-                      </div>
-                    </div>
-                     {/* we are going to define the tags that may be of the hacakthon */}
-                     <div className='ml-5 bg-white'>
-                                <Tags tagList={["#techFest", "Gju", "#TechFest","Guru Jambheshwar University"]}/>
-                    </div>
-                    <hr className='mt-5'/>
-                    {/* now we are going to define the options to options to the user to register for the hackathons */}
-                    <div className='w-full flex justify-between lg:px-5 px-3 my-2 flex-wrap'>
-                      <div className='flex md:space-x-4 space-x-2 xl:space-x-6 pt-2 md:pt-0'>
-                        <button className='px-1 md:px-2 lg:px-3 py-2 border text-md rounded-md hover:bg-blue-500 text-sm md:text-md lg:tex-lg'>Watchlist</button>
-                        <button className='lg:px-3 px-1 md:px-2 py-2 border text-md rounded-md hover:bg-blue-500 text-sm md:text-md lg:tex-lg'>Calender</button>
-                      </div>
-                      <div className='flex items-center space-x-5  pt-2 md:pt-0'>
-                        <div><p className='lg:text-lg md:text-md text-sm  font-semibold text-sm md:text-md lg:tex-lg'>Free</p></div>
-                        <div><button className='md:px-5 px-3 py-2 bg-blue-200 hover:bg-blue-500 rounded-sm text-sm md:text-md lg:tex-lg text-black hover:text-white'>Register</button></div>
-                      </div>
-                    </div>
-              </div>
-              <div className='w-full rounded-md bg-white  border justify-between p-4 mt-1 flex'>
-                 <EventWidget imageUrl="" eventName='Impression' eventNo='1000'/>
-                  <EventWidget imageUrl='' eventName='Applied By' eventNo='100'/>
-                  <EventWidget imageUrl='' eventName='Saved By' eventNo='500'/>
-              </div>
-              
-              {/* this is going to be the Eligiblity Area */}
-              <div className='flex-col flex border bg-white rounded-md my-1 px-3 py-2'>
-                <a href="/hackathon/detail/2" className=' text-md xl:text-lg font-semibold'>Eligiblity</a>
-                <a href="/hackathon/detail/2" className='text-sm lg:text-sm 2xl:text-md font-gray-50'>Condition</a>
-              </div>
-
-              {/* we are going to define the steps in the Hackathon */}
-              <div className='border rounded-md px-3 bg-white py-2'>
-                  <div className='text-lg text-neutral-800 font-bold'><a href="/hackathon/detail/2">MIH 2.O Mind Installers Hackathon</a></div>
-              </div>
-                          
-              <div className='border rounded-md bg-white mt-1 py-3 px-5'>
-                    <div className='text-md xl:text-lg text-neutral-900 font-bold'><a href="/hackathon/detail/2">All that you need to know about Code Playground</a></div>
-                    <EventsDescription 
-                    description="Calling all coding enthusiasts! The Code Playground Challenge is completely free to enter. Secure your spot by registering between April 11th, 2023, and April 15th, 2023. Don't miss out on this exciting opportunity to test your skills and compete with fellow coders!"
-                    heading="Description: "
-                    />
-                    <EventsDescriptionList subheading1='Id dolorem magni modi molestiae mollitia ipsum ab atque eius, quod tenetur?' heading='Id dolorem magni modi ' subheading2='molestiae mollitia ipsum ab atque eius, quod tenetur?'/>
-                    <EventsDescriptionList subheading1='Id dolorem magni modi molestiae mollitia ipsum ab atque eius, quod tenetur?' heading='Id dolorem magni modi ' subheading2='molestiae mollitia ipsum ab atque eius, quod tenetur?'/>
-                    <EventsDescriptionList subheading1='Id dolorem magni modi molestiae mollitia ipsum ab atque eius, quod tenetur?' heading='Id dolorem magni modi ' subheading2='molestiae mollitia ipsum ab atque eius, quod tenetur?'/>
-
-              </div>
-
-              {/* we are going to define the end of the Section ie the important dates and the deadlines */}
-              <div className='mt-1 py-3 bg-white px-5 border rounded-md'>
-              <div className='text-md lg:text-md text-gray-900 font-semibold'><a href="hackathon/detail/2">What are the important dates and Deadlines?</a></div>
-               <div className='mt-5'>
-                  <EventWidget imageUrl="" eventName='Impression' eventNo='1000'/>
-               </div>
-
-                {/* contact details of the organiser */}
-                <div className='text-md text-gray-900 font-semibold mt-5'><a href="hackathon/detail/2">Contact the Organiser</a></div>
-                <div className='mt-5'>
-                    <EventWidget imageUrl="" eventName='Impression' eventNo='1000'/>
-                </div>
-              </div>
-              </div>
-             
             </div>
-
+            <div className='lg:w-3/5 w-full h-[120vh] overflow-y-scroll  scrollbar mt-2 md:mx-5 lg:mr-1 lg:ml-3  ml-0'>
+              {festDetail ? (<DetailsOfFest festData={festDetail} />): (
+                <div> Loading....</div>
+              )}
             </div>
-
+          </div>
             {/* we are going to define the Quick Asked qustions for the hackathon */}
-            <div className='w-full bg-blue-50'>
-             <QuickQuestion />
+            <div className='py-2 bg-blue-50'>
+              <QuickQuestion />
             </div>
             <Footer />
+          </div>
         </div>
-    </div>
+      </div>
   )
 }
 
-export default FestDetails
+export default FestDetails;

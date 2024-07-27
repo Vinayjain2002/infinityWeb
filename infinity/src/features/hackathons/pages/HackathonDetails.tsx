@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import NavBar from '../../../components/navBars/NavBar';
-import HackathonCard from '../../../components/Cards/HackathonCard';
-import RoundDetails from '../components/RoundDetails';
-import EventsDescription from '../components/EventsDescription';
-import EventsDescriptionList from '../components/EventsDescriptionList';
-import EventWidget from '../components/EventWidget';
-import Footer from '../../../components/navBars/Footer';
-import ChatAssistant from '../../../components/chatAssistant/ChatAssistant';
-import ImageSlider from '../../../components/ImageSlider/ImageSlider';
-import Tags from '../components/Tags';
-import QuickQuestion from '../components/QuickQuestion';
-import hackathonImage from '../../../assets/images/hackathon.png';
-import Banner1 from '../../../assets/images/banner.jpg';
-import Banner2 from '../../../assets/images/banner3.jpeg';
-import Banner3 from '../../../assets/images/banner4.jpeg';
-import Banner4 from '../../../assets/images/banner5.png';
-import { hackathonsDetail} from '../data/data';
-import { getParticularHackathonCall } from '../api/hackathons';
-import { DetailOfHackathon } from '../components/detailOfHackathon';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import NavBar from "../../../components/navBars/NavBar";
+import HackathonCard from "../components/HackathonCards/HackathonCard";
+import Footer from "../../../components/navBars/Footer";
+import ChatAssistant from "../../../components/chatAssistant/ChatAssistant";
+import ImageSlider from "../../../components/ImageSlider/ImageSlider";
+import Tags from "../components/component/Tags";
+import QuickQuestion from "../components/component/QuickQuestion";
+import Banner1 from "../../../assets/images/banner.jpg";
+import Banner2 from "../../../assets/images/banner3.jpeg";
+import Banner3 from "../../../assets/images/banner4.jpeg";
+import Banner4 from "../../../assets/images/banner5.png";
+import { HackathonDetailInfo } from "../components/HackathonInfo/DetailOfHackathon";
+import { hackathonsDetail } from "../data/data";
 
-
-interface HackathonData  {
+interface HackathonData {
   id: string;
   postedBy: string;
   name: string;
@@ -46,82 +39,86 @@ interface HackathonData  {
 
 const HackathonDetails: React.FC = () => {
   const navigate = useNavigate();
-  const location= useLocation();
-  const [hackathonData, setHackathonData] = useState({});
-  const { id: hackathonId } = useParams();
+  const location = useLocation();
+  const [hackathonDetail, setHackathonDetail] = useState<HackathonData | null>(null);
+  const [hackathonData, setHackathonData] = useState<HackathonData[] | null>(null);
 
-  const navigateDetail = (hackathonId: string, hackathonData: HackathonData) => {
-    navigate(`/hackathon/detail/${encodeURIComponent(hackathonId)}`, {
-      state: { hackathonData },
-    });
-  };
   useEffect(() => {
-    if (location.state && location.state.hackathon) {
+    if (location.state && location.state.hackathonData) {
       try {
-        console.log("Hackathon Data is going", location.state.hackathon)
-        setHackathonData(location.state.hackathon);
+        console.log("Hackathon Data is going", location.state.hackathonData);
+        setHackathonData(location.state.hackathonData);
         console.log("set State hook", hackathonData);
       } catch (err) {
         console.error(err);
       }
     }
+    else{
+        // we are gonna to make a api call
+      setHackathonData(hackathonDetail);        
+    }
+    if (location.state && location.state.hackathon) {
+      console.log("Hackathon is going", location.state.hackathon);
+      setHackathonDetail(location.state.hackathon);
+    }
+    else{
+      const params= useParams();
+      const id= params.id;
+      // going to find out the particular data from the api
+    }
   }, [location.state]);
 
   useEffect(() => {
-    console.log("Hackathon Data:", hackathonData);
+    // You need to add some logic here
   }, [hackathonData]);
- 
 
   return (
     <div>
       <ChatAssistant />
       <NavBar />
       <div className="w-full h-50">
-        <ImageSlider images={[Banner1, Banner2, Banner3, Banner4]} autoplay={true} interval={3000} />
+        <ImageSlider
+          images={[Banner1, Banner2, Banner3, Banner4]}
+          autoplay={true}
+          interval={3000}
+        />
       </div>
       <div className="bg-blue-50">
         <div className="mx-2 flex flex-row">
-          <div className="w-2/5 h-[120vh] overflow-y-scroll scrollbar mt-2 hidden md:flex flex-col">
-            {hackathonsDetail &&
-              hackathonsDetail.map((hackathon, index) => (
+          <div className="w-2/5 h-[120vh] overflow-y-scroll scrollbar mt-3 space-y-2 hidden lg:flex flex-col">
+            {hackathonData &&
+              hackathonData?.map((hackathon, index) => (
                 <div key={index}>
-                  <a onClick={(e) => {
-                    e.preventDefault();
-                    setHackathonData(hackathon)
-                  }}>
+                  <a
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setHackathonDetail(hackathon);
+                    }}
+                  >
                     <HackathonCard
-                     id = {hackathon.id}
-                     postedBy = {hackathon.postedBy}
-                     name= {hackathon.name}
-                     location = {hackathon.location}
-                     level= {hackathon.level}
-                     prizes= {hackathon.prizes}
-                     entryFee= {hackathon.entryFee}
-                     venue= {hackathon.venue}
-                     dateOfPosting= {hackathon.dateOfPosting}
-                     problemStatement = {hackathon.problemStatement}
-                      pictures= {hackathon.pictures}
-                    mode= {hackathon.mode}
-                    lastDateToApply= {hackathon.lastDateToApply}
-                    techStackRequired = {hackathon.techStackRequired}
-                    conditions=  {hackathon.conditions}
-                    description= {hackathon.description}
-                    registerationUrl= {hackathon.registerationUrl}
+                      id={hackathon.id}
+                      name={hackathon.name}
+                      prizes={hackathon.prizes}
+                      entryFee={hackathon.entryFee}
+                      pictures={hackathon.pictures}
+                      mode={hackathon.mode}
+                      lastDateToApply={hackathon.lastDateToApply}
+                      description={hackathon.description}
                     />
                   </a>
                 </div>
               ))}
           </div>
-          <div className="md:w-3/5 w-full h-[120vh] overflow-y-scroll  scrollbar mt-2 md:ml-3 ml-0">
-              {hackathonData ? (
-                <DetailOfHackathon hackathonData={hackathonData} />
-              ) : (
-                <div>Loading...</div> // or a loading indicator of your choice
-              )}
+          <div className="lg:w-3/5 w-full h-[120vh] overflow-y-scroll  scrollbar mt-2 md:mx-5 lg:mr-1 lg:ml-3  ml-0">
+            {hackathonDetail ? (
+              <HackathonDetailInfo hackathonData={hackathonDetail} />
+            ) : (
+              <div>Loading...</div> // or a loading indicator of your choice
+            )}
           </div>
         </div>
       </div>
-      <div>
+      <div className="py-3 bg-blue-50 ">
         <QuickQuestion />
       </div>
       <div>

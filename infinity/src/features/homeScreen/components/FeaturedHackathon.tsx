@@ -1,19 +1,20 @@
 // FeaturedHackathon.tsx
 import React from 'react';
+import image from '../../../assets/images/hackathon.png'
 
 interface FeaturedHackathonProps {
-  image: string;
-  hackathonName: string;
+  picture: string[];
+  name: string;
   prizes: string;
-  lastDate: string;
+  lastDateToApply: Date;
   mode: string;
 }
 
 const FeaturedHackathon: React.FC<FeaturedHackathonProps> = ({
-  image,
-  hackathonName,
+  picture,
+  name,
   prizes,
-  lastDate,
+  lastDateToApply,
   mode,
 }) => {
   return (
@@ -23,11 +24,11 @@ const FeaturedHackathon: React.FC<FeaturedHackathonProps> = ({
           <img src={image} alt="image of the Hackathon" className="w-full h-full object-cover rounded-md" />
         </div>
         <div className="flex-1">
-          <p className="lg:text-md xl:text-lg md:text-md text-sm text-gray-700 font-medium">{hackathonName}</p>
+          <p className="lg:text-md xl:text-lg md:text-md text-sm text-gray-700 font-medium">{name}</p>
           <div className="w-4/5  flex justify-between text-xs md:text-sm xl:text-md text-gray-600">
-            <p className='hover:bg-blue-100 rounded-sm hover:px-1 '>{lastDate}</p>
-            <p className='hover:bg-blue-100 rounded-sm hover:px-1 '>{mode}</p>
-            <p className='hover:bg-blue-100 rounded-sm hover:px-1 '>{prizes}</p>
+            <p className='rounded-sm  font-medium'>Date: <span className='font-normal'>{String(lastDateToApply.toLocaleDateString())}</span></p>
+            <p className='rounded-sm  font-medium'>Mode: <span className='font-normal'>{mode}</span></p>
+            <p className='rounded-sm font-medium'>Prizes: <span className='font-normal'>{prizes}</span></p>
           </div>
         </div>
         <div className="cursor-pointer">

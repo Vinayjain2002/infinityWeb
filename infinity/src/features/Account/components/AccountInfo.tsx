@@ -2,7 +2,7 @@ import React from 'react'
 import userCover from '../../../assets/images/banner.jpg'
 import userImage from '../../../assets/images/hackathon.png'
 import AccountAnalytics from './AccountAnalyticsComponent.js';
-import HackathonCard from '../../../components/Cards/HackathonCard.js'
+import HackathonCard from '../../hackathons/components/HackathonCards/HackathonCard.js'
 import EducationCard from './EducationCardComponent.js';
 import ProjectCard from './ProjectCardComponent.jsx';
 // here we are gonna to define the all the info abt the User ie it's team Members etc

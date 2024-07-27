@@ -23,9 +23,9 @@ import PostBootcamps from './features/bootcamps/pages/PostBootcamps.tsx';
 import UpdateBootcamps from './features/bootcamps/pages/UpdateBootcamps.tsx';
 
 // we are gonna to define the routes of the Project Screen
-import Project from './features/projects/pages/Projects.js'
 import DetailedProject from './features/projects/pages/DetailedProjects.js'
 import UpdateProject from './features/projects/pages/UpdateProject.tsx';
+import AllProjects from './features/projects/pages/AllProjects.js';
 import PostProject from './features/projects/pages/PostProject.tsx';
 
 // we are gonna to import the routes of the Blog Page
@@ -51,12 +51,13 @@ import Help from './features/Details/pages/Help.tsx';
 import Contact from './features/Details/pages/Contact.tsx';
 
 //we are gonna to definr the route for the Video Screen
-import Videos from './features/Videos/pages/Videos.tsx';
+import AllVideos from './features/Videos/pages/AllVideos.tsx';
 import PostVideo from './features/Videos/pages/PostVideo.tsx';
 import PlayVideo from './features/Videos/pages/PlayVideo.tsx';
 import FestDetails from './features/fests/pages/FestDetails.tsx';
 import AllBootcamps from './features/bootcamps/pages/AllBootcamps.tsx';
 import BootcampDetails from './features/bootcamps/pages/BootcampDetails.tsx';
+import { Error404 } from './features/errorPages/pages/404error.tsx';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCvdwjk8ycZiGgOZHA7A0fztozG3R57nHA",
@@ -85,7 +86,7 @@ const App = () => {
         <Route path= '/admin/register' element={<RegisterAsAdmin />} />
         
         {/* we are gonna to define the routes of the basic pages */}
-        <Route path='/homeScreen' element= {<HomePage/>}/>
+        <Route path='/' element= {<HomePage/>}/>
         <Route path='/account' element={<Account />} />
 
         {/* this route is left to be linked with the backened */}
@@ -105,7 +106,7 @@ const App = () => {
         <Route path='/blog/post' element={<PostBlog />} />
 
         {/* we are gonna to define the routes for the Project Screens */}
-        <Route path='/project' element={<Project />}/>
+        <Route path='/project' element={<AllProjects />}/>
         <Route path='/project/:id' element={<DetailedProject />}/>
         <Route path='/project/update/:id' element={<UpdateProject />} />
         <Route path='/project/post' element={<PostProject />}/>
@@ -122,9 +123,9 @@ const App = () => {
 
         {/* we are going to define the routes of the Bootcamp Screen */}
         <Route path='/bootcamp' element={<AllBootcamps />}/>
-        <Route path='/bootcamp/:id' element={<BootcampDetails />} />
+        <Route path='/bootcamp/:id' element={<BootcampDetails/>} />
         <Route path='/bootcamp/detail/:id' element={<DetailedBootcamps />} />
-        <Route path='/bootcamp/post' element={<PostBootcamps />} />
+        <Route path='/bootcamp/post' element={<PostBootcamps/>} />
         <Route path='/bootcamp/update/:id' element={<UpdateBootcamps />} />        
 
         {/* we are gonna to define the routes of the Fests */}
@@ -135,10 +136,12 @@ const App = () => {
         <Route path="/fest/update/:id" element={<UpdateFest />} />
 
         {/* we are gonna to define the routes for the Videos Section */}
-        <Route path="/video" element={<Videos />} />
+        <Route path="/video" element={<AllVideos />} />
         <Route path='/postVideo' element={<PostVideo />} />
         <Route path='/video/:id' element={<PlayVideo />} />
         
+        {/* defining the 404 page if no other page is present */}
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
   </Router>

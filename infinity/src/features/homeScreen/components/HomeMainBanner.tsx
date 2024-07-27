@@ -31,7 +31,7 @@ const HomeMainBanner = () => {
                     <div className='w-full bg-white rounded-lg py-5 mt-1'>
                         <div className='flex justify-around flex-row no-wrap'>
                             {homeCompany.map((company,index)=>(
-                              <div key={company.id} style={{height: "40px"}}>
+                              <div key={company.id}  className='lg:h-[40px] md:h-[35px] h-[30px] px-3'>
                                 <img className='h-full object-cover rounded-lg' src={company.image} alt={`Company ${company.id}`} />
                               </div>
                             ))}

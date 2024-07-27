@@ -1,28 +1,71 @@
-import React, { useState } from 'react';
-import NavBar from '../../../components/navBars/NavBar';
-import Footer from '../../../components/navBars/Footer';
-import DetailedHackathon from '../../../components/Cards/DetailedHackathon';
-import SearchBarComponent from '../../../components/SearchBar/SearchBarComponent';
-import FilterCardsComponent from '../../../components/filters/FilterCards';
-import SortCardsComponents from '../../../components/filters/SortCards';
-import ChatAssistant from '../../../components/chatAssistant/ChatAssistant';
-import '../../../style.css';
-import { hackathonsDetail } from '../data/data';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import NavBar from "../../../components/navBars/NavBar";
+import Footer from "../../../components/navBars/Footer";
+import SearchBarComponent from "../../../components/SearchBar/SearchBarComponent";
+import FilterCardsComponent from "../../../components/filters/FilterCards";
+import SortCardsComponents from "../../../components/filters/SortCards";
+import ChatAssistant from "../../../components/chatAssistant/ChatAssistant";
+import "../../../style.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import HackathonFeaturedCard from "../components/HackathonCards/FeaturedCard";
+import { hackathonsDetail } from "../data/data";
 
+interface Hackathon {
+  id: string;
+  postedBy: string;
+  name: string;
+  organisedBy: string;
+  location: string;
+  level: string;
+  prizes: string;
+  entryFee: number;
+  venue: string;
+  dateOfPosting: Date;
+  problemStatement: string[];
+  pictures: string[];
+  mode: string;
+  lastDateToApply: Date;
+  techStackRequired: string[];
+  conditions: string[];
+  description: string;
+  registerationUrl: string;
+  roundDetails: { [index: string]: string }[];
+  eventDescription: { [index: string]: string }[];
+}
 const AllHackathons = () => {
   const navigate = useNavigate();
-  const [hackathons, setHackathons] = useState(hackathonsDetail);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortType, setSortType] = useState('');
+  const location = useLocation();
+  const [hackathonData, setHackathonData] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortType, setSortType] = useState("");
+  const { state } = location;
+
+  useEffect(() => {
+    if (location.state && location.state.hackathonData) {
+      try {
+        console.log("Hackathon Data is going", location.state.hackathonData);
+        setHackathonData(location.state.hackathonData);
+        console.log("set State hook", hackathonData);
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      // here we are gonna to make the api call
+      setHackathonData(hackathonsDetail);
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    console.log("Hackathon Data:", hackathonData);
+  }, [hackathonData]);
 
   const handleSearch = (e: any) => {
     const searchTerm = e.target.value;
     setSearchTerm(searchTerm);
-    const filteredHackathons = hackathonsDetail.filter((hackathon) =>
-      hackathon.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setHackathons(filteredHackathons);
+    // const filteredHackathons = hackathons.filter((hackathon) =>
+    // hackathon.name.toLowerCase().includes(searchTerm.toLowerCase())
+    // );
+    // setHackathons(filteredHackathons);
   };
 
   const handleMostRelevantClick = () => {
@@ -50,10 +93,10 @@ const AllHackathons = () => {
   };
 
   const Sortbuttons = [
-    { text: 'Most Relevant', handleClick: handleMostRelevantClick },
-    { text: 'Submission Date', handleClick: handleSubmissionDateClick },
-    { text: 'Recently Added', handleClick: handleRecentlyAddedClick },
-    { text: 'Prize Amount', handleClick: handlePrizeAmountClick },
+    { text: "Most Relevant", handleClick: handleMostRelevantClick },
+    { text: "Submission Date", handleClick: handleSubmissionDateClick },
+    { text: "Recently Added", handleClick: handleRecentlyAddedClick },
+    { text: "Prize Amount", handleClick: handlePrizeAmountClick },
   ];
 
   return (
@@ -64,7 +107,7 @@ const AllHackathons = () => {
         <div className="bg-gray-20">
           {/* this is going to be the body of the All the Hackathons Card */}
           <div className="w-full bg-dark-blue flex justify-center">
-            <p className="xl:text-3xl lg:text-2xl md:text-lg text-md text-white xl:py-10 lg:py-8 md:py-5 py-4">
+            <p className="xl:text-3xl lg:text-2xl text-lg text-white xl:py-10 lg:py-8 md:py-5 py-4">
               Join the world's best online and in-person hackathons
             </p>
           </div>
@@ -90,47 +133,51 @@ const AllHackathons = () => {
             <div className="lg:w-4/5">
               <div>
                 <div className="">
-                  <SortCardsComponents noOfResults="  100000" buttons={Sortbuttons} />
+                  <SortCardsComponents
+                    noOfResults="  100000"
+                    buttons={Sortbuttons}
+                  />
                 </div>
                 {/* we need to define a filter here */}
                 <div className="w-full flex flex-col space-y-2 mt-5 h-screen overflow-x-hidden scrollbar">
-                  {hackathons && hackathons.map((hackathon, index) => (
-                    <div key={index}>
-                      <a
-                        href={`/hackathon/${encodeURIComponent(hackathon.id)}`}
-                        key={index}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          navigate(`/hackathon/${encodeURIComponent(hackathon.id)}`, {
-                            state: { hackathon },
-                          });
-                        }}
-                      >
-                        <DetailedHackathon
-                           id={hackathon.id}
-                          postedBy={hackathon.postedBy}
-                          name={hackathon.name}
-                          organisedBy={hackathon.organisedBy}
-                          location={hackathon.location}
-                          level={hackathon.level}
-                          prizes={hackathon.prizes}
-                          entryFee={hackathon.entryFee}
-                          venue={hackathon.venue}
-                          dateOfPosting={hackathon.dateOfPosting}
-                          problemStatement={hackathon.problemStatement}
-                          pictures={hackathon.pictures}
-                          mode={hackathon.mode}
-                          lastDateToApply={hackathon.lastDateToApply}
-                          techStackRequired={hackathon.techStackRequired}
-                          conditions={hackathon.conditions}
-                          description={hackathon.description}
-                          registerationUrl={hackathon.registerationUrl}
-                          roundDetails= {hackathon.roundDetails}
-                          eventDescription= {hackathon.eventDescription}
-                      />
-                    </a>
-                  </div>
-                  ))}
+                  {hackathonData != undefined &&
+                    (hackathonData as Hackathon[]).map((hackathon, index) => (
+                      <div key={index}>
+                        <a
+                          href={`/hackathon/${encodeURIComponent(
+                            hackathon.id
+                          )}`}
+                          key={index}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            navigate(
+                              `/hackathon/${encodeURIComponent(hackathon.id)}`,
+                              {
+                                state: {
+                                  hackathon: hackathon,
+                                  hackathonData: hackathonData,
+                                },
+                              }
+                            );
+                          }}
+                        >
+                          <HackathonFeaturedCard
+                            id={hackathon.id}
+                            name={hackathon.name}
+                            organisedBy={hackathon.organisedBy}
+                            level={hackathon.level}
+                            prizes={hackathon.prizes}
+                            entryFee={hackathon.entryFee}
+                            pictures={hackathon.pictures}
+                            mode={hackathon.mode}
+                            lastDateToApply={hackathon.lastDateToApply}
+                            techStackRequired={hackathon.techStackRequired}
+                            conditions={hackathon.conditions}
+                            description={hackathon.description}
+                          />
+                        </a>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
@@ -139,6 +186,7 @@ const AllHackathons = () => {
         <Footer />
       </div>
     </div>
-    );};
-                        
-export default AllHackathons;  
+  );
+};
+
+export default AllHackathons;
