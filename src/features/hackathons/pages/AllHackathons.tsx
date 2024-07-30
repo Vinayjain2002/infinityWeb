@@ -35,7 +35,7 @@ interface Hackathon {
 const AllHackathons = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [hackathonData, setHackathonData] = useState();
+  const [hackathonData, setHackathonData] = useState<Hackathon[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortType, setSortType] = useState("");
   const { state } = location;
@@ -43,9 +43,7 @@ const AllHackathons = () => {
   useEffect(() => {
     if (location.state && location.state.hackathonData) {
       try {
-        console.log("Hackathon Data is going", location.state.hackathonData);
         setHackathonData(location.state.hackathonData);
-        console.log("set State hook", hackathonData);
       } catch (err) {
         console.error(err);
       }
@@ -56,7 +54,6 @@ const AllHackathons = () => {
   }, [location.state]);
 
   useEffect(() => {
-    console.log("Hackathon Data:", hackathonData);
   }, [hackathonData]);
 
   const handleSearch = (e: any) => {
@@ -107,7 +104,7 @@ const AllHackathons = () => {
         <div className="bg-gray-20">
           {/* this is going to be the body of the All the Hackathons Card */}
           <div className="w-full bg-dark-blue flex justify-center">
-            <p className="xl:text-3xl lg:text-2xl text-lg text-white xl:py-10 lg:py-8 md:py-5 py-4">
+            <p className="xl:text-3xl lg:text-2xl text-lg text-white  text-center px-3 xl:py-10 lg:py-8 md:py-5 py-4">
               Join the world's best online and in-person hackathons
             </p>
           </div>
@@ -115,8 +112,8 @@ const AllHackathons = () => {
             <SearchBarComponent
               btnText="Search"
               text="Search all Hackathons"
-              onChange={handleSearch}
-              value={searchTerm}
+              // onChange={handleSearch}
+              // value={searchTerm}
             />
           </div>
           <div className="my-3">
@@ -142,12 +139,11 @@ const AllHackathons = () => {
                 <div className="w-full flex flex-col space-y-2 mt-5 h-screen overflow-x-hidden scrollbar">
                   {hackathonData != undefined &&
                     (hackathonData as Hackathon[]).map((hackathon, index) => (
-                      <div key={index}>
-                        <a
+                      <div key={hackathon.id}>
+                        <a key={hackathon.id}
                           href={`/hackathon/${encodeURIComponent(
                             hackathon.id
                           )}`}
-                          key={index}
                           onClick={(e) => {
                             e.preventDefault();
                             navigate(

@@ -88,7 +88,7 @@ const LoginAsAdmin: React.FC<LoginAsAdminProps> = () => {
           <label htmlFor="password" className="text-gray-500 ld:text-md 2xl:text-lg text-md mt-4">Password:</label>
           <input type="password" id="password" className="border px-2 py-1 border-gray-300 lg:w-full md:w-full  focus:outline-none focus:border-blue-500 2xl:rounded-md rounded-sm" onChange={onChangeHandler} name="password" />
           <button type="submit" className="bg-blue-500 text-white w-full font-semibold px-4 lg:py-2 py-1 mt-4 hover:bg-blue-600 focus:outline-none">
-              <Button variant="contained" color="primary" disabled={isLoading} loading={isLoading} className='text-md xl:text-4xl'>
+              <Button  color="primary" disabled={isLoading} loading={isLoading} className='text-md xl:text-4xl'>
                   Login
               </Button>                
             </button>

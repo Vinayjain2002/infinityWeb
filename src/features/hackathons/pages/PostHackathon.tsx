@@ -23,12 +23,12 @@ const PostHackathon = () => {
             <div className='mt-10' style={{height: "250px"}} >
               <img src={hackathonIllustration} alt="image of the hackathon" className='object-cover h-full'/>
             </div>
-            <div className='flex flex-col justify-center items-center text-center mt-5 w-1/2'>
-              <p className='text-4xl text-gray-800'>Grow your developer ecosystem with Devpost</p>
-              <p className='mt-5 text-gray-800'>Inspire developers to build with your tools through hackathons managed by Devpost.</p>
+            <div className='flex flex-col justify-center items-center text-center mt-5 lg:w-1/2 md:w-2/3'>
+              <p className='xl:text-4xl lg:text-3xl text-xl font-medium text-gray-800'>Grow your developer ecosystem with Devpost</p>
+              <p className='md:mt-5 mt-2 lg:text-md text-sm text-gray-800  md:w-3/4'>Inspire developers to build with your tools through hackathons managed by Devpost.</p>
             </div>
             <div className='mt-5'>
-              <button className='px-7 rounded-md text-white py-3 bg-blue-500 border'>Get Started</button>
+              <button className='lg:px-7 sm:px-5 px-3 text-sm xl:text-lg lg:text-md  rounded-md text-white py-3 bg-blue-500 border'>Get Started</button>
             </div>
           </div>
           <div className='mt-60'></div>

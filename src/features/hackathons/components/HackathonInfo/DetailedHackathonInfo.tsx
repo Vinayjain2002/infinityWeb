@@ -78,12 +78,12 @@ export const DetailedHackathonInfo: React.FC<HackathonDetailProps> = (
           {/* here we are gonna to define the entry Fee and the Register link */}
           <div>
             <div className="text-md lg:text-lg py-2 font-semibold">
-              Entry Fees: <span className="font-normal pl-2">${hackathonDetails.entryFee}</span>
+              Entry Fees: <span className="font-normal md:pl-2">${hackathonDetails.entryFee}</span>
             </div>
           </div>
           <div className="text-md lg:text-lg py-2 font-semibold">
             Register Here:
-            <span className=" ml-4 px-5 rounded-md py-2 bg-blue-400 hover:bg-blue-500  hover:text-white font-semibold">
+            <span className=" sm:ml-4 ml-2 sm:px-5 px-2 rounded-md py-2 bg-blue-400 hover:bg-blue-500  hover:text-white font-semibold">
               <a className="font-normal" href={hackathonDetails.registerationUrl}>
                 Register
               </a>

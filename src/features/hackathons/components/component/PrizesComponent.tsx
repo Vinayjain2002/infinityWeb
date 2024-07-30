@@ -3,7 +3,7 @@ import image from '../../../../assets/images/hackathon.png'
 
 const PrizesComponent = () => {
   return (
-    <div className='w-full flex border-2 rounded-md px-2'>
+    <div className='w-full flex border-2 bg-white md:w-1/3 sm:w-1/2 rounded-md px-2'>
         <div className='w-15 mt-2 h-10 border rounded-md bg-black overflow-hidden'>
             <img src={image} className='w-12 h-10 object-cover' />
         </div>

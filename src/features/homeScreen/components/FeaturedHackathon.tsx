@@ -32,7 +32,7 @@ const FeaturedHackathon: React.FC<FeaturedHackathonProps> = ({
           </div>
         </div>
         <div className="cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#455A64" stroke-width="2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#455A64">
             <path d="M19 12H5M12 5L19 12L12 19" />
           </svg>
         </div>

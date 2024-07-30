@@ -32,7 +32,7 @@ const HackathonFeaturedCard: React.FC<HackathonProps> = ({
 }) => {
   return (
     <div className="border rounded-md flex border-dark-blue border-t-1 border-r-4 border-b-1 border-l-4">
-      <div className="flex items-center justify-center px-1 bg-dark-blue">
+      <div className="sm:flex hidden items-center justify-center px-1 bg-dark-blue">
         <div className="whitespace-pre text-xs space-y-0 py-0 font-semibold text-white">
           F<br />
           E<br />
@@ -44,10 +44,10 @@ const HackathonFeaturedCard: React.FC<HackathonProps> = ({
           D<br />
         </div>
       </div>
-      <div className="w-full mx-5 md:mx-0 bg-gray-50  px-3 py-4 border border-dark-blue border-t-0 border-b-0  border-l-5">
+      <div className="w-full md:mx-5 md:mx-0 bg-gray-50 px-2 sm:px-3 py-4 border border-dark-blue border-t-0 border-b-0  border-l-5">
         {/* here we are gonna to define the detailed hackathon card */}
         <div className="flex justify-between flex-row w-full space-x-5 lg:space-x-3">
-          <div className="lg:w-3/5 md:w-4/5 flex flex-row">
+          <div className="lg:w-3/5 md:w-4/5 w-full flex flex-row">
             <div className="md:w-1/3 lg:w-2/4 sm:w-1/3 w-1/2 my-auto rounded-lg bg-black overflow-hidden">
               <img src={image} alt="" className="object-cover w-full" />
             </div>
@@ -100,7 +100,7 @@ const HackathonFeaturedCard: React.FC<HackathonProps> = ({
               <div className="text-sm font-semibold text-gray-800">Tags:</div>
               <div className="ml-2 text-xs space-y-1 text-blue-700">
                 {techStackRequired?.map((tech, index) => (
-                  <div className="px-2 hover:bg-blue-300 rounded-md bg-blue-200">
+                  <div key={index} className="px-2 hover:bg-blue-300 rounded-md bg-blue-200">
                     {tech}
                   </div>
                 ))}
@@ -110,7 +110,7 @@ const HackathonFeaturedCard: React.FC<HackathonProps> = ({
               <div className="text-sm font-semibold text-gray-800">Condition:</div>
               <div className="ml-2 text-xs space-y-1 text-blue-700">
                 {conditions?.map((condition, index) => (
-                  <div className="px-2 hover:bg-blue-300 rounded-md bg-blue-200">
+                  <div key={index} className="px-2 hover:bg-blue-300 rounded-md bg-blue-200">
                     {condition}
                   </div>
                 ))}

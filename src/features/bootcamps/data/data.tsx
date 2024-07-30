@@ -23,7 +23,8 @@ export const bootCampDetail = [
       prerequisite: ["Basic knowledge of computers"],
       tutor: ["Rahul Kumar", "John Doe"],
       duration: 30,
-      techStack: ["JavaScript", "HTML/CSS"]
+      techStack: ["JavaScript", "HTML/CSS"],
+      prizes: 4000
     },
     {
       id: "2",
@@ -49,6 +50,7 @@ export const bootCampDetail = [
       prerequisite: ["Basic knowledge of programming"],
       tutor: ["John Doe", "Jane Doe"],
       duration: 60,
+      prizes: 50000,
       techStack: ["Python", "Java"]
     },
     {
@@ -62,6 +64,7 @@ export const bootCampDetail = [
       dateOfPosted: new Date("2022-04-01"),
       entryFee: 1000,
       totalSeats: 20,
+      prizes: 10000,
       description: "Join our bootcamp to learn expert-level programming concepts",
       hasTags: ["Programming", "Experts"],
       queryContacts: ["Jane Doe", "Bob Smith"],
@@ -88,6 +91,7 @@ export const bootCampDetail = [
         dateOfPosted: new Date("2022-05-01"),
         entryFee: 200,
         totalSeats: 30,
+        prizes: 20000,
         description: "Join our bootcamp to learn programming concepts for kids",
         hasTags: ["Programming", "Kids"],
         queryContacts: ["Bob Smith", "Alice Johnson"],
@@ -107,6 +111,7 @@ export const bootCampDetail = [
         techStack: ["Scratch", "Python"]
       },
       {
+        prizes: 50000,
         id: "5",
         image: [""],
         postedBy: "Alice Johnson",

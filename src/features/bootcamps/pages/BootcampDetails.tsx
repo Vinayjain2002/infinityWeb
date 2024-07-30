@@ -20,6 +20,7 @@ import Banner5 from "../../../assets/images/banner5.png";
 import { bootCampDetail } from "../data/data";
 import { DetailOfBootcamp } from "../components/detailOfBootcamp";
 
+
 interface BootCampData {
   id: string;
   postedBy: string;
@@ -44,48 +45,42 @@ interface BootCampData {
   tutor: string[];
   duration: number;
   techStack: string[];
+  image: string[];
+  prizes: number;
 }
 
-interface DetailOfBootcampProps{
+interface DetailOfBootcampProps {
   bootCampData: BootCampData;
 }
 
-const BootcampDetails: React.FC<DetailOfBootcampProps> = (bootcampData) => {
-  if(!bootcampData){
-    return <div>Loading...</div>
-  }
+const BootcampDetails: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [bootCampData, setBootCampData] = useState<BootCampData | null>(null);
-  const [bootCampDetail, setBootCampDetail]= useState<BootCampData|null>(null)
+  const [bootCampData, setBootCampData] = useState<BootCampData[] | null>(null);
+  const [bootCampDetails, setBootCampDetails] = useState<BootCampData | null>(
+    null
+  );
   const { id: bootcampId } = useParams();
-
-  
 
   useEffect(() => {
     if (location.state && location.state.bootCampData) {
       try {
-        console.log("Bootcamp Data is going", location.state.bootCampData);
-        setBootCampData(location.state.bootCampData);
-        console.log("set State hook", bootCampData);
+        setBootCampData([location.state.bootCampData]);
       } catch (err) {
         console.log(err);
       }
-    } 
-    else{
-      setBootCampData(bootCampDetail)
+    } else {
+      setBootCampData(bootCampDetail);
     }
 
-    if(location.state && location.state.bootCamp){
-      setBootCampDetail(location.state.bootCamp)
-    }
-    else{
+    if (location.state && location.state.bootCamp) {
+      setBootCampDetails(location.state.bootCamp);
+    } else {
       // setBootCampDetail(bootCampData);
     }
   }, [location.state]);
 
-  useEffect(() => {
-  }, [bootCampData]);
+  useEffect(() => {}, [bootCampData]);
 
   return (
     <div>
@@ -102,34 +97,34 @@ const BootcampDetails: React.FC<DetailOfBootcampProps> = (bootcampData) => {
       <div className="bg-blue-50">
         <div className="mx-2 flex flex-row">
           <div className="w-2/5 h-[120vh] overflow-y-scroll scrollbar mt-3 space-y-1 hidden lg:flex flex-col">
-            {bootCampData &&
-              bootCampData?.map((bootcamp, index) => (
-                <div key={index}>
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setBootCampData(bootcamp);
-                    }}
-                  >
-                    <BootCampCard
-                      id={bootcamp.id}
-                      image= {bootcamp.image}
-                      name={bootcamp.name}
-                      mode={bootcamp.mode}
-                      lastDateToApply={bootcamp.lastDateToApply}
-                      entryFee={bootcamp.entryFee}
-                      description={bootcamp.description}
-                      hasTags={bootcamp.hasTags}                     
-                      duration={bootcamp.duration}
-                      techStack={bootcamp.techStack}
-                    />
-                  </a>
-                </div>
-              ))}
+            {bootCampData?.map((bootcamp, index) => (
+              <div key={bootcamp.id}>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setBootCampDetails(bootcamp);
+                  }}
+                >
+                  <BootCampCard
+                    id={bootcamp.id}
+                    image={bootcamp.image}
+                    name={bootcamp.name}
+                    mode={bootcamp.mode}
+                    lastDateToApply={bootcamp.lastDateToApply}
+                    entryFee={bootcamp.entryFee}
+                    description={bootcamp.description}
+                    hasTags={bootcamp.hasTags}
+                    duration={bootcamp.duration}
+                    techStack={bootcamp.techStack}
+                    prizes={bootcamp.prizes}
+                  />
+                </a>
+              </div>
+            ))}
           </div>
-          <div className="lg:w-3/5 w-full h-[120vh] overflow-y-scroll scrollbar  md:mx-5 lg:mr-1 lg:ml-3  ml-0">
-            {bootCampDetail ? (
-              <DetailOfBootcamp bootCampData={bootCampDetail} />
+          <div className="lg:w-3/5 w-full h-[120vh] overflow-y-scroll scrollbar md:mx-5 lg:mr-1 lg:ml-3 ml-0">
+            {bootCampDetails ? (
+              <DetailOfBootcamp bootCampData={bootCampDetails} />
             ) : (
               <div>Loading...</div>
             )}

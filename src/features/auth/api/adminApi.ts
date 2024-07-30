@@ -8,7 +8,7 @@ interface RegisterAdminData{
     adminname: string;
     adminemail:string;
     adminmbileno: string;
-    accessAppliedFor: string;
+    accessAppliedFor: {}[];
 }
 
 interface LoginAdminData{
@@ -16,24 +16,21 @@ interface LoginAdminData{
     password: string;
 }
 
-export const RegisterAdminApiCall = async(adminname:string,adminemail:string,adminmobileno: string, accessAppliedFor: string): Promise<any>=>{
-    try{
-        const Api_Url: string=  `${ip}/api/infinity/auth/admin/apply`;
-        const response: any= await axios.post(Api_Url, {'adminname': adminname,'adminemail': adminemail, 'adminmobileno': adminmobileno, 'accessAppliedFor': accessAppliedFor});
-        if(response){
-            const data: any= response.data;
-            return data;
-          }
-          else{
-            return null;
-          }
-    }
-    catch(err: any){
-        console.error(err);
+export const RegisterAdminApiCall = async (adminname: string, adminemail: string, adminmobileno: string, accessAppliedFor: string[]): Promise<any> => {
+    try {
+      const Api_Url: string = `${ip}/api/infinity/auth/admin/apply`;
+      const response: any = await axios.post(Api_Url, { 'adminname': adminname, 'adminemail': adminemail, 'adminmobileno': adminmobileno, 'accessAppliedFor': accessAppliedFor });
+      if (response) {
+        const data: any = response.data;
+        return data;
+      } else {
         return null;
+      }
+    } catch (err: any) {
+      console.error(err);
+      return null;
     }
-}
-
+  }
 export const LoginAdminApiCall = async(adminemail: string,adminpassword: string )=>{
     try{
         const Api_Url: string = `${ip}/api/infinity/auth/admin/login`;

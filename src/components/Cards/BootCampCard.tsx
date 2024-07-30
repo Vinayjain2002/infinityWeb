@@ -11,6 +11,7 @@ interface BootcampProps {
   description: string;
   hasTags: string[];
   duration: number;
+  prizes: number;
   techStack: string[];
 }
 

@@ -3,13 +3,8 @@ import Footer from "../../../components/navBars/Footer";
 import NavBar from "../../../components/navBars/NavBar";
 import ChatAssistant from "../../../components/chatAssistant/ChatAssistant";
 import ImageSlider from "../../../components/ImageSlider/ImageSlider";
-import banner from "../../../assets/images/banner.jpg";
-import Tags from "../../hackathons/components/component/Tags";
-import EventWidget from "../../hackathons/components/component/EventWidget";
 import PrizesComponent from "../../hackathons/components/component/PrizesComponent";
 import Oppertunity from "../../hackathons/components/component/Oppertunity";
-import RoundDetails from "../../hackathons/components/component/RoundDetails";
-import FestRounds from "../components/FestRounds";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Banner1 from "../../../assets/images/banner3.jpeg";
 import Banner2 from "../../../assets/images/banner4.jpeg";
@@ -17,6 +12,7 @@ import Banner3 from "../../../assets/images/banner5.png";
 import Banner4 from "../../../assets/images/banners1.jpg";
 import { DetailedFestInfo } from "../components/info/DetailedFestInfo";
 import { DetailedFestSidebar } from "../components/component/DetailedFestSideBar";
+
 interface FestData {
   id: string;
   image: string;
@@ -41,13 +37,12 @@ interface FestData {
   organisedUnder: string[];
 }
 
-const DetailedFest: React.FC = (fest) => {
-  const navigate = useNavigate();
+const DetailedFest: React.FC = () => {
   const location = useLocation();
   const { id: festId } = useParams();
   const [RaiseOpinion, setRaiseOpinion] = useState(false);
   const [discussion, setDiscussion] = useState(false);
-  const [festData, setFestData] = useState<FestData>({});
+  const [festData, setFestData] = useState<FestData | null>(null);
 
   useEffect(() => {
     try {
@@ -78,34 +73,34 @@ const DetailedFest: React.FC = (fest) => {
           />
         </div>
         <div className=" mx-5 mt-5 flex flex-row space-x-2">
-          <div className="lg:w-2/3 w-full h-[90vh] overflow-y-scroll scrollbar">
+          <div className="lg:w-2/3 w-full max-h-[90vh] overflow-y-scroll scrollbar">
             <DetailedFestInfo
-              id={festData.id}
-              image={festData.image}
-              eventname={festData.eventname}
-              mode={festData.mode}
-              dateofPosted={festData.dateofPosted}
-              lastDateToApply={festData.lastDateToApply}
-              entryFee={festData.entryFee}
-              totalSeats={festData.totalSeats}
-              description={festData.description}
-              hasTags={festData.hasTags}
-              queryContacts={festData.queryContacts}
-              organiser={festData.organiser}
-              eventsDetail={festData.eventsDetail}
-              registerationUrl={festData.registerationUrl}
-              city={festData.city}
-              venue={festData.venue}
-              chiefGuests={festData.chiefGuests}
-              dressCode={festData.dressCode}
-              perks={festData.perks}
-              organisedUnder={festData.organisedUnder}
-              postedBy={festData.postedBy}
+              id={festData?.id ?? ""}
+              image={festData?.image ?? ''}
+              eventname={festData?.eventname ?? ''}
+              mode={festData?.mode ?? ''}
+              dateofPosted={festData?.dateofPosted ?? new Date()}
+              lastDateToApply={festData?.lastDateToApply ?? new Date()}
+              entryFee={festData?.entryFee ?? 0}
+              totalSeats={festData?.totalSeats ?? 0}
+              description={festData?.description ?? ''}
+              hasTags={festData?.hasTags ?? []}
+              queryContacts={festData?.queryContacts ?? []}
+              organiser={festData?.organiser ?? []}
+              eventsDetail={festData?.eventsDetail ?? []}
+              registerationUrl={festData?.registerationUrl ?? ''}
+              city={festData?.city ?? ''}
+              venue={festData?.venue ?? ''}
+              chiefGuests={festData?.chiefGuests ?? []}
+              dressCode={festData?.dressCode ?? ''}
+              perks={festData?.perks ?? []}
+              organisedUnder={festData?.organisedUnder ?? []}
+              postedBy={festData?.postedBy ?? ''}
             />
 
             {/* We are going to define the Sections of the Prizes and the other things */}
-            <div className="w-full border py-2 px-2">
-              <div className="flex flex-row mt-1 space-x-3 w-full">
+            <div className="w-full">
+              <div className="flex flex-wrap flex-row mt-1  w-full">
                 <PrizesComponent />
                 <PrizesComponent />
                 <PrizesComponent />
@@ -125,9 +120,9 @@ const DetailedFest: React.FC = (fest) => {
                   }}
                 >
                   <Oppertunity
-                    name={festData.eventname}
-                    description={festData.description}
-                    mode={festData.mode}
+                    name={festData?.eventname ?? ''}
+                    description={festData?.description ?? ''}
+                    mode={festData?.mode ?? ''}
                     prizes=""
                   />
                 </a>
@@ -138,9 +133,9 @@ const DetailedFest: React.FC = (fest) => {
                   }}
                 >
                   <Oppertunity
-                    name={festData.eventname}
-                    description={festData.description}
-                    mode={festData.mode}
+                    name={festData?.eventname ?? ''}
+                    description={festData?.description ?? ''}
+                    mode={festData?.mode ?? ''}
                     prizes=""
                   />
                 </a>
@@ -160,9 +155,9 @@ const DetailedFest: React.FC = (fest) => {
                   }}
                 >
                   <Oppertunity
-                    name={festData.eventname}
-                    description={festData.description}
-                    mode={festData.mode}
+                    name={festData?.eventname ?? ''}
+                    description={festData?.description ?? ''}
+                    mode={festData?.mode ?? ''}
                     prizes=""
                   />
                 </a>
@@ -173,9 +168,9 @@ const DetailedFest: React.FC = (fest) => {
                   }}
                 >
                   <Oppertunity
-                    name={festData.eventname}
-                    description={festData.description}
-                    mode={festData.mode}
+                    name={festData?.eventname ?? ''}
+                    description={festData?.description ?? ''}
+                    mode={festData?.mode ?? ''}
                     prizes=""
                   />
                 </a>
@@ -244,11 +239,11 @@ const DetailedFest: React.FC = (fest) => {
           {/* this is the Second part of the webpage */}
           <div className=" lg:block hidden w-1/3">
             <DetailedFestSidebar
-              entryFee={festData.entryFee}
-              registerationUrl={festData.registerationUrl}
+              entryFee={festData?.entryFee ?? 0}
+              registerationUrl={festData?.registerationUrl ?? ''}
               level=""
               prizes=""
-              mode={festData.mode}
+              mode={festData?.mode ?? ''}
             />
 
             {/* we are going to define the Section of the Eligiblity */}

@@ -21,3 +21,30 @@
   .snap-center {
     scroll-snap-align: center;
   }
+  .nav-icon {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .nav-icon .line1,
+  .nav-icon .line2,
+  .nav-icon .line3 {
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center;
+    stroke-width: 3;
+  }
+  
+  .nav-icon.active {
+    transform: none;
+  }
+  
+  .nav-icon.active .line1 {
+    transform: rotate(45deg) translateX(1px);
+  }
+  
+  .nav-icon.active .line2 {
+    opacity: 0;
+  }
+  
+  .nav-icon.active .line3 {
+    transform: rotate(-45deg) translateX(-1px);
+  }

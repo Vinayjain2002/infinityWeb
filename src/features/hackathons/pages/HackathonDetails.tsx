@@ -46,19 +46,15 @@ const HackathonDetails: React.FC = () => {
   useEffect(() => {
     if (location.state && location.state.hackathonData) {
       try {
-        console.log("Hackathon Data is going", location.state.hackathonData);
-        setHackathonData(location.state.hackathonData);
-        console.log("set State hook", hackathonData);
+       setHackathonData(location.state.hackathonData);
       } catch (err) {
         console.error(err);
       }
     }
     else{
-        // we are gonna to make a api call
-      setHackathonData(hackathonDetail);        
+        setHackathonData(hackathonsDetail);
     }
     if (location.state && location.state.hackathon) {
-      console.log("Hackathon is going", location.state.hackathon);
       setHackathonDetail(location.state.hackathon);
     }
     else{

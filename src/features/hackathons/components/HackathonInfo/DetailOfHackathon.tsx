@@ -102,7 +102,7 @@ export const HackathonDetailInfo: React.FC<DetailOfHackathonProps> = ({
               Calender
             </button>
           </div>
-          <div className="flex items-center space-x-5 pt-2 md:pt-0">
+          <div className="flex items-center space-x-2 pt-2 md:pt-0">
             <div>
               <p className="lg:text-md font-medium text-md">
                 Entry Fee:
@@ -170,7 +170,7 @@ export const HackathonDetailInfo: React.FC<DetailOfHackathonProps> = ({
                   <ul className="md:mt-1">
                     {hackathonData?.techStackRequired?.map(
                       (techStack, index) => (
-                        <div className="flex items-center mb-1 pl-4">
+                        <div key={index} className="flex items-center mb-1 pl-4">
                           <span className="bg-gray-500 w-2 h-2 rounded-full mr-2"></span>
                           <li
                             key={index}

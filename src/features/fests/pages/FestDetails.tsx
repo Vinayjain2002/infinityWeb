@@ -26,14 +26,19 @@ interface FestData {
   eventname: string;
   mode: string;
   dateofPosted: Date;
-  lastDateToApply: Date;
+  lastDateToApply: Date; 
   entryFee: number;
   totalSeats: number;
   description: string;
   hasTags: string[];
   queryContacts: string[];
   organiser: string[];
-  eventsDetail: {[index: string]: string}[];
+  eventsDetail: {
+    roundName: string;
+    startDate: string;
+    endDate: string;
+    roundDetails: string;
+  }[];
   registerationUrl: string;
   city: string;
   venue: string;
@@ -45,8 +50,8 @@ interface FestData {
 
 const FestDetails: React.FC = () => {
   const location = useLocation();
-  const [festData, setFestData] = useState<FestData | null>(null);
-  const [festDetail, setFestDetail] = useState<FestData |null>(null);
+  const [festData, setFestData] = useState<FestData[] | null>(null);
+  const [festDetail, setFestDetail] = useState<FestData | null>(null); // Change the type to FestData | null
 
   useEffect(() => {
     if (location.state && location.state.festData) {
@@ -90,7 +95,7 @@ const FestDetails: React.FC = () => {
         {/* we are going to define the split Screeen Hackathons */}
         <div className='bg-blue-50'>
           <div className='mx-2 flex flex-row'>
-            <div className='w-2/5 h-[120vh] overflow-y-scroll scrollbar mt-3 space-y-2 hidden lg:flex flex-col'>
+            <div className='w-2/5 max-h-[120vh] overflow-y-scroll scrollbar mt-3 space-y-2 hidden lg:flex flex-col'>
               {
                 festData!=undefined && (festData)?.map((fest, index) => (
                   <div key={index}>
@@ -112,7 +117,7 @@ const FestDetails: React.FC = () => {
                 ))
               }
             </div>
-            <div className='lg:w-3/5 w-full h-[120vh] overflow-y-scroll  scrollbar mt-2 md:mx-5 lg:mr-1 lg:ml-3  ml-0'>
+            <div className='lg:w-3/5 w-full max-h-[120vh] overflow-y-scroll  scrollbar mt-2 md:mx-5 lg:mr-1 lg:ml-3  ml-0'>
               {festDetail ? (<DetailsOfFest festData={festDetail} />): (
                 <div> Loading....</div>
               )}

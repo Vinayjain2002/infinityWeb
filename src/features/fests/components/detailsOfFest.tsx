@@ -21,7 +21,12 @@ interface DetailedFest {
   hasTags: string[];
   queryContacts: string[];
   organiser: string[];
-  eventsDetail: string[];
+  eventsDetail: {
+    roundName: string;
+    startDate: string;
+    endDate: string;
+    roundDetails: string;
+  }[];
   registerationUrl: string;
   city: string;
   venue: string;
@@ -118,19 +123,19 @@ export const DetailsOfFest: React.FC<DetailsOfFest> = ({ festData }) => {
         </div>
       </div>
       <div className="w-full rounded-md bg-white  border mt-1">
-            <div className="lg:w-full md:w-5/6 w-full flex p-4 justify-between">
-            <EventWidget
-          imageUrl=""
-          heading="Posted By"
-          value={festData.postedBy}
-        />
-        <EventWidget imageUrl="" heading="city" value={festData.city} />
-        <EventWidget
-          imageUrl=""
-          heading="Total Seats"
-          value={String(festData.totalSeats)}
-        />
-            </div>
+        <div className="lg:w-full md:w-5/6 w-full flex sm:flex-row flex-col space-y-2 sm:space-y-0  p-4 justify-between ">
+          <EventWidget
+            imageUrl=""
+            heading="Posted By"
+            value={festData.postedBy}
+          />
+          <EventWidget imageUrl="" heading="city" value={festData.city} />
+          <EventWidget
+            imageUrl=""
+            heading="Total Seats"
+            value={String(festData.totalSeats)}
+          />
+        </div>
       </div>
 
       {/* this is going to be the Eligiblity Area */}
@@ -175,7 +180,9 @@ export const DetailsOfFest: React.FC<DetailsOfFest> = ({ festData }) => {
         <div className="flex items-center mt-2 pl-4">
           <span className="bg-gray-500 w-2 h-2 rounded-full mr-2"></span>
           <div className="">
-            <div className="font-bold text-gray-900 text-sm lg:text-md ">Venue:</div>
+            <div className="font-bold text-gray-900 text-sm lg:text-md ">
+              Venue:
+            </div>
             <div className="text-sm lg:text-md text-gray-500 pl-1">
               {festData.venue}
             </div>

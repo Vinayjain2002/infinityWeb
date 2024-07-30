@@ -31,7 +31,7 @@ const FestFeaturedCard: React.FC<FestProps> = ({
 }) => {
   return (
     <div className="border rounded-md flex border-dark-blue border-t-1 border-r-4 border-b-1 border-l-4">
-      <div className="flex items-center justify-center px-1 bg-dark-blue">
+      <div className="sm:flex hidden items-center justify-center px-1 bg-dark-blue">
         <div className="whitespace-pre text-xs space-y-0 py-0 font-semibold text-white">
           F<br />
           E<br />
@@ -43,7 +43,7 @@ const FestFeaturedCard: React.FC<FestProps> = ({
           D <br />
         </div>
       </div>
-      <div className="w-full mx-5 md:mx-0 bg-gray-50 px-3 py-4 border border-dark-blue border-t-0 border-b-0  border-l-5">
+      <div className="w-full sm:mx-5 md:mx-0 bg-gray-50 sm:px-3 px-2 py-4 border border-dark-blue border-t-0 border-b-0  border-l-5">
         {/* here we are gonna to define the detailed hackathon card */}
         <div className="flex justify-between flex-row w-full space-x-5 lg:space-x-3">
           <div className="lg:w-3/5 md:w-4/5 flex flex-row">

@@ -35,23 +35,27 @@ interface BootCampData {
   prerequisite: string[];
   tutor: string[];
   duration: number;
+  prizes: number;
   techStack: string[];
 }
 
-const DetailedBootcamps: React.FC = (bootcamp) => {
+const DetailedBootcamps: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { id: hackathonId } = useParams();
   const [raiseOpinion, setRaiseOpinion] = useState(false);
   const [discussion, setDiscussion] = useState(false);
-  const [bootCampData, setBootCampData] = useState<BootCampData>({});
+  const [bootCampData, setBootCampData] = useState<BootCampData | null>(null);
 
   useEffect(() => {
     // we are gonna to set the Recieved Data
     try {
-      setBootCampData(location.state.bootCampData);
-      console.log("going to print the data");
-      console.log(bootCampData);
+      if(location.state && location.state.bootCampData){
+        setBootCampData(location.state.bootCampData);
+      }
+      else{
+        setBootCampData(null);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -80,29 +84,29 @@ const DetailedBootcamps: React.FC = (bootcamp) => {
         <div className="mx-5 mt-5 flex flex-row space-x-2">
           <div className="lg:w-2/3 w-full h-[90vh] overflow-y-scroll scrollbar">
             <DetailedBootcampInfo
-              id={bootCampData.id}
-              postedBy={bootCampData.postedBy}
-              name={bootCampData.name}              
-              mode={bootCampData.mode}
-              dateOfEvent={bootCampData.dateOfEvent}
-              lastDateToApply={bootCampData.lastDateToApply}
-              dateOfPosted={bootCampData.dateOfPosted}
-              entryFee={bootCampData.entryFee}
-              totalSeats={bootCampData.totalSeats}
-              description={bootCampData.description}
-              hasTags={bootCampData.hasTags}
-              queryContacts={bootCampData.queryContacts}
-              organiser={bootCampData.organiser}
-              eventsDetail={bootCampData.eventsDetail}
-              organisedUnder={bootCampData.organisedUnder}
-              registerationUrl={bootCampData.registerationUrl}
-              hostedOn={bootCampData.hostedOn}
-              perks={bootCampData.perks}
-              certificationProvided={bootCampData.certificationProvided}
-              prerequisite={bootCampData.prerequisite}
-              tutor={bootCampData.tutor}
-              duration={bootCampData.duration}
-              techStack={bootCampData.techStack}
+              id={bootCampData?.id ?? ''}
+              postedBy={bootCampData?.postedBy ?? ''}
+              name={bootCampData?.name ?? ''}              
+              mode={bootCampData?.mode ?? ''}
+              dateOfEvent={bootCampData?.dateOfEvent ?? new Date()}
+              lastDateToApply={bootCampData?.lastDateToApply ?? new Date()}
+              dateOfPosted={bootCampData?.dateOfPosted ?? new Date()}
+              entryFee={bootCampData?.entryFee ?? 0}
+              totalSeats={bootCampData?.totalSeats ?? 0}
+              description={bootCampData?.description ?? ''}
+              hasTags={bootCampData?.hasTags ?? []}
+              queryContacts={bootCampData?.queryContacts ?? []}
+              organiser={bootCampData?.organiser ?? []}
+              eventsDetail={bootCampData?.eventsDetail ?? []}
+              organisedUnder={bootCampData?.organisedUnder ?? []}
+              registerationUrl={bootCampData?.registerationUrl ?? ''}
+              hostedOn={bootCampData?.hostedOn ?? ''}
+              perks={bootCampData?.perks ?? []}
+              certificationProvided={bootCampData?.certificationProvided ?? false}
+              prerequisite={bootCampData?.prerequisite ?? []}
+              tutor={bootCampData?.tutor ?? []}
+              duration={bootCampData?.duration ?? 0}
+              techStack={bootCampData?.techStack ?? []}
             />
             {/* we are going to define the featured Oppertunity Section */}
             <div className="w-full mt-1 py-3 rounded-md bg-white border flex flex-col">
@@ -118,9 +122,9 @@ const DetailedBootcamps: React.FC = (bootcamp) => {
                   }}
                 >
                   <Oppertunity
-                    name={bootCampData.name}
-                    description={bootCampData.description}
-                    mode={bootCampData.mode}
+                    name={bootCampData?.name ?? ''}
+                    description={bootCampData?.description ?? ''}
+                    mode={bootCampData?.mode ?? ''}
                     prizes=""
                   />
                 </a>
@@ -131,9 +135,9 @@ const DetailedBootcamps: React.FC = (bootcamp) => {
                   }}
                 >
                   <Oppertunity
-                    name={bootCampData.name}
-                    description={bootCampData.description}
-                    mode={bootCampData.mode}
+                    name={bootCampData?.name ?? ''}
+                    description={bootCampData?.description ?? ''}
+                    mode={bootCampData?.mode ?? ''}
                     prizes=""
                   />
                 </a>
@@ -153,9 +157,9 @@ const DetailedBootcamps: React.FC = (bootcamp) => {
                   }}
                 >
                   <Oppertunity
-                    name={bootCampData.name}
-                    description={bootCampData.description}
-                    mode={bootCampData.mode}
+                    name={bootCampData?.name ?? ''}
+                    description={bootCampData?.description ?? ''}
+                    mode={bootCampData?.mode ?? ''}
                     prizes=""
                   />
                 </a>
@@ -166,9 +170,9 @@ const DetailedBootcamps: React.FC = (bootcamp) => {
                   }}
                 >
                   <Oppertunity
-                    name={bootCampData.name}
-                    description={bootCampData.description}
-                    mode={bootCampData.mode}
+                    name={bootCampData?.name ?? ''}
+                    description={bootCampData?.description ?? ''}
+                    mode={bootCampData?.mode ?? ''}
                     prizes=""
                   />
                 </a>
@@ -237,11 +241,11 @@ const DetailedBootcamps: React.FC = (bootcamp) => {
           {/* this is the Second part of the webpage */}
           <div className=" lg:block hidden w-1/3">
             <DetailedBootCampSidebar
-              entryFee={bootCampData.entryFee}
-              registerationUrl={bootCampData.registerationUrl}
+              entryFee={bootCampData?.entryFee ?? 0}
+              registerationUrl={bootCampData?.registerationUrl ?? ''}
               level=""
               prizes=""
-              mode={bootCampData.mode}
+              mode={bootCampData?.mode ?? ''}
             />
 
             {/* we are going to define the Section of the Eligiblity */}

@@ -37,20 +37,23 @@ interface HackathonData {
   eventDescription: { [index: string]: string }[];
 }
 
-const DetailedHackathonPage: React.FC = (hackathon) => {
-  const navigate = useNavigate();
+const DetailedHackathonPage: React.FC = () => {
   const location = useLocation();
   const { id: hackathonId } = useParams();
   const [raiseOpinion, setRaiseOpinion] = useState(false);
   const [discussion, setDiscussion] = useState(false);
-  const [hackathonData, setHackathonData] = useState<HackathonData>({});
+  const [hackathonData, setHackathonData] = useState<HackathonData | null>(
+    null
+  );
 
   useEffect(() => {
     // we are gonna to set the Recieved Data
     try {
-      setHackathonData(location.state.hackathonData);
-      console.log("going to print the data");
-      console.log(hackathonData);
+      if (location.state && location.state.hackathonData) {
+        setHackathonData(location.state.hackathonData);
+      } else {
+        setHackathonData(null);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -77,19 +80,19 @@ const DetailedHackathonPage: React.FC = (hackathon) => {
           />
         </div>
         <div className="mx-5 mt-5 flex flex-row space-x-2">
-          <div className="lg:w-2/3 w-full h-[90vh] overflow-y-scroll scrollbar">
+          <div className="lg:w-2/3 w-full max-h-[90vh] h-auto overflow-y-scroll scrollbar">
             <DetailedHackathonInfo
-              name={hackathonData.name}
-              description={hackathonData.description}
-              location={hackathonData.location}
-              dateOfPosting={hackathonData.dateOfPosting}
-              lastDateToApply={hackathonData.lastDateToApply}
-              organisedBy={hackathonData.organisedBy}
-              roundDetails={hackathonData.roundDetails}
-              mode={hackathonData.mode}
-              level={hackathonData.level}
-              registerationUrl={hackathonData.registerationUrl}
-              entryFee={hackathonData.entryFee}
+              name={hackathonData?.name ?? ""}
+              description={hackathonData?.description ?? ""}
+              location={hackathonData?.location ?? ""}
+              dateOfPosting={hackathonData?.dateOfPosting ?? new Date()}
+              lastDateToApply={hackathonData?.lastDateToApply ?? new Date()}
+              organisedBy={hackathonData?.organisedBy ?? ""}
+              roundDetails={hackathonData?.roundDetails ?? []}
+              mode={hackathonData?.mode ?? ""}
+              level={hackathonData?.level ?? ""}
+              registerationUrl={hackathonData?.registerationUrl ?? ""}
+              entryFee={hackathonData?.entryFee ?? 0}
             />
             {/* we are going to define the featured Oppertunity Section */}
             <div className="w-full mt-1 py-3 rounded-md bg-white border flex flex-col">
@@ -105,10 +108,10 @@ const DetailedHackathonPage: React.FC = (hackathon) => {
                   }}
                 >
                   <Oppertunity
-                    name={hackathonData.name}
-                    description={hackathonData.description}
-                    mode={hackathonData.mode}
-                    prizes={hackathonData.prizes}
+                    name={hackathonData?.name ?? ""}
+                    description={hackathonData?.description ?? ""}
+                    mode={hackathonData?.mode ?? ""}
+                    prizes={hackathonData?.prizes ?? ''}
                   />
                 </a>
                 <a
@@ -118,10 +121,10 @@ const DetailedHackathonPage: React.FC = (hackathon) => {
                   }}
                 >
                   <Oppertunity
-                    name={hackathonData.name}
-                    description={hackathonData.description}
-                    mode={hackathonData.mode}
-                    prizes={hackathonData.prizes}
+                    name={hackathonData?.name ?? ''}
+                    description={hackathonData?.description ?? ''}
+                    mode={hackathonData?.mode ?? ''}
+                    prizes={hackathonData?.prizes ?? ''}
                   />
                 </a>
               </div>
@@ -140,10 +143,10 @@ const DetailedHackathonPage: React.FC = (hackathon) => {
                   }}
                 >
                   <Oppertunity
-                    name={hackathonData.name}
-                    description={hackathonData.description}
-                    mode={hackathonData.mode}
-                    prizes={hackathonData.prizes}
+                    name={hackathonData?.name ?? ''}
+                    description={hackathonData?.description ?? ''}
+                    mode={hackathonData?.mode ?? ''}
+                    prizes={hackathonData?.prizes ?? ''}
                   />
                 </a>
                 <a
@@ -153,10 +156,10 @@ const DetailedHackathonPage: React.FC = (hackathon) => {
                   }}
                 >
                   <Oppertunity
-                    name={hackathonData.name}
-                    description={hackathonData.description}
-                    mode={hackathonData.mode}
-                    prizes={hackathonData.prizes}
+                    name={hackathonData?.name ?? ''}
+                    description={hackathonData?.description ?? ''}
+                    mode={hackathonData?.mode ?? ''}
+                    prizes={hackathonData?.prizes ?? ''}
                   />
                 </a>
               </div>
@@ -224,11 +227,11 @@ const DetailedHackathonPage: React.FC = (hackathon) => {
           {/* this is the Second part of the webpage */}
           <div className=" lg:block hidden w-1/3">
             <DetailedHackathonSidebar
-              entryFee={hackathonData.entryFee}
-              registerationUrl={hackathonData.registerationUrl}
-              level={hackathonData.level}
-              prizes={hackathonData.prizes}
-              mode={hackathonData.mode}
+              entryFee={hackathonData?.entryFee ?? 0}
+              registerationUrl={hackathonData?.registerationUrl ?? ''}
+              level={hackathonData?.level ?? ''}
+              prizes={hackathonData?.prizes ?? ''}
+              mode={hackathonData?.mode ?? ''}
             />
 
             {/* we are going to define the Section of the Eligiblity */}
@@ -244,8 +247,11 @@ const DetailedHackathonPage: React.FC = (hackathon) => {
                       key={index}
                       className="flex items-baseline space-x-2 pl-5"
                     >
-                      <div className="w-2 h-2 rounded-full bg-gray-500"></div>
-                      <p>{condition}</p>
+                      <div
+                        key={index}
+                        className="w-2 h-2 rounded-full bg-gray-500"
+                      ></div>
+                      <p key={index}>{condition}</p>
                     </li>
                   ))}
                 </ul>
@@ -264,8 +270,11 @@ const DetailedHackathonPage: React.FC = (hackathon) => {
                       key={index}
                       className="flex items-baseline space-x-2 pl-5"
                     >
-                      <div className="w-2 h-2 rounded-full bg-gray-500"></div>
-                      <p>{tech}</p>
+                      <div
+                        key={index}
+                        className="w-2 h-2 rounded-full bg-gray-500"
+                      ></div>
+                      <p key={index}>{tech}</p>
                     </li>
                   ))}
                 </ul>

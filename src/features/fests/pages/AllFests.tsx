@@ -16,14 +16,19 @@ interface FestData {
   eventname: string;
   mode: string;
   dateofPosted: Date;
-  lastDateToApply: Date;
+  lastDateToApply: Date; 
   entryFee: number;
   totalSeats: number;
   description: string;
   hasTags: string[];
   queryContacts: string[];
   organiser: string[];
-  eventsDetail: {}[];
+  eventsDetail: {
+    roundName: string;
+    startDate: string;
+    endDate: string;
+    roundDetails: string;
+  }[];
   registerationUrl: string;
   city: string;
   venue: string;
@@ -36,7 +41,7 @@ interface FestData {
 const AllFests = () => {
   const navigate = useNavigate();
   const location= useLocation();
-  const [festData, setFestData] = useState();
+  const [festData, setFestData] = useState<FestData[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortType, setSortType] = useState("");
 
@@ -90,8 +95,8 @@ const AllFests = () => {
             <SearchBarComponent
               btnText="Search"
               text="Search all Fests"
-              onChange={handleSearch}
-              value={searchTerm}
+              // onChange={handleSearch}
+              // value={searchTerm}
             />
           </div>
           <div className="my-3">
@@ -114,7 +119,7 @@ const AllFests = () => {
                   />
                 </div>
                 {/* we need to define a filter here */}
-                <div className="w-full flex flex-col space-y-2 mt-5 h-screen overflow-x-hidden scrollbar">
+                <div className="w-full flex flex-col space-y-2 mt-5 max-h-screen overflow-x-hidden scrollbar">
                   {festData!=undefined &&
                     (festData as FestData[]).map((fest, index) => (
                       <div key={index}>

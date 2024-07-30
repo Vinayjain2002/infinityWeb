@@ -82,12 +82,12 @@ export const DetailedBootcampInfo: React.FC<BootcampDetailProps> = (
           {/* here we are gonna to define the entry Fee and the Register link */}
           <div>
             <div className="text-md lg:text-lg py-2 font-semibold">
-              Entry Fees: <span className="font-normal pl-2">${bootCampDetail.entryFee}</span>
+              Entry Fees: <span className="font-normal sm:pl-2 ">${bootCampDetail.entryFee}</span>
             </div>
           </div>
           <div className="text-md lg:text-lg py-2 font-semibold">
             Register Here:
-            <span className=" ml-4 px-5 rounded-md py-2 bg-blue-400 hover:bg-blue-500  hover:text-white font-semibold">
+            <span className="ml-2 sm:ml-4 px-5 rounded-md py-2 bg-blue-400 hover:bg-blue-500  hover:text-white font-semibold">
               <a className="font-normal" href={bootCampDetail.registerationUrl}>
                 Register
               </a>

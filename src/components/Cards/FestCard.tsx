@@ -31,7 +31,7 @@ const FestCard: React.FC<DetailedFestProps> = (props) => {
                 {props?.description}
               </p>
             </div>
-            <div className="flex mt-2 space-between gap-4">
+            <div className="flex flex-wrap  space-between mt-2 sapce-x-2 ">
               <div className="text-xs md:text-sm lg:text-md  font-semibold">
                 Last Date:{" "}
                 <span className="text-gray-700 font-normal">

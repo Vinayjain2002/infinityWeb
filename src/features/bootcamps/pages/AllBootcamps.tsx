@@ -103,8 +103,8 @@ const AllBootcamps = () => {
             <SearchBarComponent
               btnText="Search"
               text="Search all Bootcamps"
-              onChange={handleSearch}
-              value={searchTerm}
+              // onChange={handleSearch}
+              // value={searchTerm}
             />
           </div>
           <div className="my-3">

@@ -87,7 +87,7 @@ export const DetailedFestInfo: React.FC<FestData> = (festDetails) => {
         <div className="pl-5">
           {festDetails.eventsDetail?.map((round, index) => (
             <div key={index} className="flex items-baseline space-x-2 pl-5">
-              <div className="w-2 h-2 rounded-full bg-gray-500"></div>
+              <div className="w-2 h-2  rounded-full bg-gray-500"></div>
               <FestRounds
                 roundDetails={round?.roundDetails}
                 roundName={round.roundName}
